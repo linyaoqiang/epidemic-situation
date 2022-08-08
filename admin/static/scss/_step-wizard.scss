@@ -1,0 +1,100 @@
+/*----------------------------------------*/
+/*  05. Step Widget CSS
+/*----------------------------------------*/
+.smart-wizard {
+    // Step Nav
+    & .step-anchor {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -15px;
+        & .nav-item {
+            flex: 1 0 auto;
+            padding: 15px;
+            & .nav-link {
+                border: none;
+                background-color: $grey;
+                padding: 20px 30px;
+                border-radius: 4px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: default;
+                color: $body-light;
+                &:hover {
+                    color: $body-light;
+                }
+            }
+            &.active, &.done {
+                & a {
+                    cursor: pointer;
+                    color: $white;
+                    &:hover {
+                        color: $white;
+                    }
+                }
+            }
+            &.active {
+                & a {
+                    background-color: $primary;
+                }
+            }
+            &.done {
+                & a {
+                    background-color: rgba($primary, 0.3);
+                }
+            }
+        }
+    }
+    // Step Content
+    & .sw-container {
+        & .step-content {
+            display: none;
+            height: auto;
+            opacity: 1;
+            visibility: visible;
+            padding: 30px 0;
+        }
+    }
+    // Toolbar
+    & .sw-toolbar {
+        & .sw-btn-group {
+            margin-right: 15px !important;
+            &:last-child {
+                margin-right: 0 !important;
+            }
+            & .btn {
+                @extend .button;
+                @extend .button-primary;
+                border-radius: 4px !important;
+                margin-right: 5px !important;
+                &:last-child {
+                    margin-right: 0 !important;
+                }
+            }
+        }
+    }
+    // Vertical 
+    &.vertical {
+        & .step-anchor {
+            margin: 0;
+            padding: 0 15px;
+            flex-direction: column;
+            & li {
+                padding: 0;
+                margin-bottom: 30px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        & .sw-container {
+            & .step-content {
+                padding: 0;
+            }
+        }
+        & .sw-toolbar {
+            padding: 0 15px;
+            flex: 1 0 100%;
+            margin-bottom: 30px;
+        }
+    }
+}

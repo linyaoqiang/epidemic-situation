@@ -1,0 +1,18 @@
+/*--
+    - Card
+--------------------------------------*/
+.card {
+    & .card-header {
+        background-color: transparent;
+    }
+    & .card-body {}
+    & .card-footer {
+        background-color: transparent;
+    }
+}
+.card-link {
+    color: $primary;
+    &:hover {
+        color: darken($primary, 10);
+    }
+}

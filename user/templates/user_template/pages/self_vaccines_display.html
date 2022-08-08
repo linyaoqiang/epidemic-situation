@@ -1,0 +1,77 @@
+{% extends 'user_template/index.html' %}
+{% load static %}
+{% block content %}
+    <div class="layui-container">
+
+
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">查看自己预约的疫苗</h2>
+                <div class="layui-colla-content layui-show">
+                    疫苗能够极有效的防控疫情的发生!
+                </div>
+            </div>
+        </div>
+
+
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>疫苗公司</th>
+                <th>接种单位</th>
+                <th>针次</th>
+                <th>数量</th>
+                <th>发布时间</th>
+                <th>预约时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in user_vaccines_list %}
+                <tr>
+                    <td>{{ item.vaccines.location }}</td>
+                    <td>{{ item.vaccines.company }}</td>
+                    <td>{{ item.vaccines.get_needles_display }}</td>
+                    <td>{{ item.vaccines.quantity }}</td>
+                    <td>{{ item.vaccines.create_time|date:'Y年m月d日' }}</td>
+                    <td>{{ item.time_of_appointment|date:'Y年m月d日' }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="page">
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+                , count: {{ paginator.count }} //数据总数，从服务端得到
+                , limits: [2, 4, 6, 8, 10]
+                , layout: ['prev', 'page', 'next', 'limit']
+                , groups: 10
+                , limit: {{ page_size }}
+                , curr: {{ page_number }}
+                , jump: function (obj, first) {
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        var api = '/vaccines/self?page=' + obj.curr + '&size=' + obj.limit
+                        window.location.href = api
+                    }
+                }
+            });
+        });
+
+
+
+    </script>
+{% endblock %}

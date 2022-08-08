@@ -1,0 +1,245 @@
+/*--
+    - Checkbox (Custom)
+--------------------------------------*/
+
+/*Checkbox One*/
+.adomx-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    line-height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    cursor: default;
+    & input {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        width: 18px;
+        height: 18px;
+        visibility: hidden;
+        &:checked {
+            & + .icon {
+                background-color: $primary;
+                border-color: $primary;
+                &::before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    & .icon {
+        width: 18px;
+        height: 18px;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 2px solid #bbbbbb;
+        border-radius: 2px;
+        transition: all 0.3s ease 0s;
+        &::before {
+            content: "\f26b";
+            font-family: $icon-mdif;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 14px;
+            line-height: 14px;
+            width: 100%;
+            text-align: center;
+            color: $white;
+            opacity: 0;
+            margin-left: -1px;
+            transition: all 0.3s ease 0s;
+        }
+    }
+    // Colors
+    &.primary {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $primary;
+                    border-color: $primary;
+                }
+            }
+        }
+    }
+    &.secondary {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $secondary;
+                    border-color: $secondary;
+                }
+            }
+        }
+    }
+    &.success {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $success;
+                    border-color: $success;
+                }
+            }
+        }
+    }
+    &.danger {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $danger;
+                    border-color: $danger;
+                }
+            }
+        }
+    }
+    &.warning {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $warning;
+                    border-color: $warning;
+                }
+            }
+        }
+    }
+    &.info {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $info;
+                    border-color: $info;
+                }
+            }
+        }
+    }
+}
+
+/*Checkbox Two*/
+.adomx-checkbox-2 {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    line-height: 18px;
+    margin: 0;
+    cursor: default;
+    & input {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        width: 18px;
+        height: 18px;
+        visibility: hidden;
+        &:checked {
+            & + .icon {
+                border-color: $primary;
+                &::before {
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+    & .icon {
+        width: 18px;
+        height: 18px;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 2px solid #bbbbbb;
+        transition: all 0.3s ease 0s;
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 8px;
+            height: 8px;
+            background-color: #aaaaaa;
+            transition: all 0.3s ease 0s;
+        }
+    }
+    // Colors
+    &.primary {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $primary;
+                    &::before {
+                        background-color: $primary;
+                    }
+                }
+            }
+        }
+    }
+    &.secondary {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $secondary;
+                    &::before {
+                        background-color: $secondary;
+                    }
+                }
+            }
+        }
+    }
+    &.success {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $success;
+                    &::before {
+                        background-color: $success;
+                    }
+                }
+            }
+        }
+    }
+    &.danger {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $danger;
+                    &::before {
+                        background-color: $danger;
+                    }
+                }
+            }
+        }
+    }
+    &.warning {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $warning;
+                    &::before {
+                        background-color: $warning;
+                    }
+                }
+            }
+        }
+    }
+    &.info {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $info;
+                    &::before {
+                        background-color: $info;
+                    }
+                }
+            }
+        }
+    }
+}

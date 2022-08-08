@@ -1,0 +1,34 @@
+/*Add & Edit Product Wrap*/
+.add-edit-product-wrap {
+    background-color: $light-grey;
+    padding: 80px;
+    // Responsive
+    @media #{$desktop-device}{
+        padding: 80px;
+    }
+    @media #{$tablet-device}{
+        padding: 60px;
+    }
+    @media #{$large-mobile}{
+        padding: 50px;
+    }
+    @media #{$small-mobile}{
+        padding: 40px;
+    }
+    @media #{$extra-small-mobile}{
+        padding: 30px;
+    }
+}
+/*Add & Edit Product Form*/
+.add-edit-product-form {
+    & .title {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+    & .form-help-text {
+        line-height: 1.1;
+        margin-bottom: 10px;
+    }
+}

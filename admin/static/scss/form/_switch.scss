@@ -1,0 +1,254 @@
+/*--
+    - Switch (Custom)
+--------------------------------------*/
+
+/*Switch One*/
+.adomx-switch {
+    position: relative;
+    line-height: 0;
+    margin: 0;
+    display: flex;
+    & input {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        width: 18px;
+        height: 18px;
+        visibility: hidden;
+        &:checked {
+            & + .lever {
+                background-color: rgba($primary, 0.3);
+                &::before {
+                    background-color: $primary;
+                    box-shadow: 0 0 15px rgba($primary, 0.5);
+                    left: 20px;
+                }
+            }
+        }
+    }
+    & .lever {
+        width: 40px;
+        height: 14px;
+        display: block;
+        border-radius: 50px;
+        background-color: rgba($black, 0.15);
+        transition: background-color 0.3s ease 0s;
+        margin: 3px 0;
+        margin-right: 10px;
+        position: relative;
+        &:last-child {
+            margin-right: 0;
+        }
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: $white;
+            box-shadow: 0 0 15px rgba($black, 0.2);
+            transition: left 0.5s ease 0s, background-color 0.3s ease 0s;
+        }
+    }
+    & .text {
+        line-height: 1;
+        padding-top: 2px;
+    }
+    // Colors
+    &.primary {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: rgba($primary, 0.3);
+                    &::before {
+                        background-color: $primary;
+                        box-shadow: 0 0 15px rgba($primary, 0.5);
+                    }
+                }
+            }
+        }
+    }
+    &.secondary {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: rgba($secondary, 0.3);
+                    &::before {
+                        background-color: $secondary;
+                        box-shadow: 0 0 15px rgba($secondary, 0.5);
+                    }
+                }
+            }
+        }
+    }
+    &.success {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: rgba($success, 0.3);
+                    &::before {
+                        background-color: $success;
+                        box-shadow: 0 0 15px rgba($success, 0.5);
+                    }
+                }
+            }
+        }
+    }
+    &.danger {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: rgba($danger, 0.3);
+                    &::before {
+                        background-color: $danger;
+                        box-shadow: 0 0 15px rgba($danger, 0.5);
+                    }
+                }
+            }
+        }
+    }
+    &.warning {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: rgba($warning, 0.3);
+                    &::before {
+                        background-color: $warning;
+                        box-shadow: 0 0 15px rgba($warning, 0.5);
+                    }
+                }
+            }
+        }
+    }
+    &.info {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: rgba($info, 0.3);
+                    &::before {
+                        background-color: $info;
+                        box-shadow: 0 0 15px rgba($info, 0.5);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*Switch Two*/
+.adomx-switch-2 {
+    position: relative;
+    line-height: 0;
+    margin: 0;
+    display: flex;
+    & input {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        width: 18px;
+        height: 18px;
+        visibility: hidden;
+        &:checked {
+            & + .lever {
+                background-color: $primary;
+                &::before {
+                    left: 20px;
+                }
+            }
+        }
+    }
+    & .lever {
+        width: 40px;
+        height: 20px;
+        display: block;
+        border-radius: 50px;
+        background-color: rgba($black, 0.15);
+        transition: background-color 0.3s ease 0s;
+        margin-right: 10px;
+        position: relative;
+        &:last-child {
+            margin-right: 0;
+        }
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: $white;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: left 0.5s ease 0s, background-color 0.3s ease 0s;
+        }
+    }
+    & .text {
+        line-height: 20px;
+        padding-top: 2px;
+    }
+    // Colors
+    &.primary {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+    &.secondary {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: $secondary;
+                }
+            }
+        }
+    }
+    &.success {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: $success;
+                }
+            }
+        }
+    }
+    &.danger {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: $danger;
+                }
+            }
+        }
+    }
+    &.warning {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: $warning
+                }
+            }
+        }
+    }
+    &.info {
+        & input {
+            &:checked {
+                & + .lever {
+                    background-color: $info;
+                }
+            }
+        }
+    }
+}

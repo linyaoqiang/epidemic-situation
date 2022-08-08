@@ -1,0 +1,156 @@
+{% extends 'index.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static '' %}">
+<style>
+    option {
+        font-size: 48px;
+    }
+
+    .content-body > div, nav, button {
+        margin-top: 20px;
+    }
+</style>
+{% block content %}
+    <!-- Content Body Start -->
+    <div class="content-body">
+
+        <!-- Page Headings Start -->
+        <div class="row justify-content-between align-items-center mb-10">
+
+            <!-- Page Heading Start -->
+            <div class="col-12 col-lg-auto mb-20">
+                <div class="page-heading">
+                    <h3 class="title">表格 <span>/ 用户管理显示</span></h3>
+                </div>
+            </div><!-- Page Heading End -->
+
+        </div><!-- Page Headings End -->
+
+
+
+        <form class="inline" action="/admin/user/display" method="get">
+            <div class="form-row" style="margin-top: 20px;">
+                <div class="form-group col-md-2">
+                    <label for="previous-date">生日区间上</label>
+                    <input id="previous-date" class="form-control" name="p_date" type="date" value="{{ previous_date }}">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="next-date">生日区间下</label>
+                    <input id="next-date" class="form-control" name="n_date" type="date" value="{{ next_date }}">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="nickname">昵称</label>
+                    <input id="nickname" class="form-control" name="nick" type="text" value="{{ nickname }}">
+                </div>
+
+                <div>
+                    <label>&nbsp;</label>
+                    <input class="form-control btn-outline-primary" type="submit" value="查询">
+                </div>
+
+                 <div>
+                    <label>&nbsp;</label>
+                    <button class="btn-outline-primary form-control"><a href="/admin/user/display">清除条件</a></button>
+                </div>
+            </div>
+
+        </form>
+
+        <button class="btn-default btn-primary" style="margin-top: 20px;"><a href="/admin/user/add">新增用户</a></button>
+
+
+        <table class="table table-bordered" style="margin-top: 20px;">
+            <thead>
+            <tr>
+                <td>用户名</td>
+                <td>昵称</td>
+                <td>年龄</td>
+                <td>生日</td>
+                <td>性别</td>
+                <td>账号状态</td>
+                <td>账号权限</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in users %}
+                <tr>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.nickname }}</td>
+                    <td>{{ item.age }}岁</td>
+                    <td>{{ item.birth_day|date:'Y年m月d日' }}</td>
+                    <td>{{ item.get_gender_display }}</td>
+                    <td>{{ item.get_status_display }}</td>
+                    <td>{{ item.get_power_display }}</td>
+                    <td>
+                        <button class="btn-default btn-outline-success"><a href="/admin/user/edit/{{ item.id }}">编辑</a></button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <nav>
+
+            <ul class="pagination">
+                {% if page_number > 1 %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/user/display?page={{ page_number|add:-1 }}&size=={{ paginator.per_page }}">上一页</a>
+                    </li>
+                {% endif %}
+
+                {% for index in paginator.pages %}
+                    {% if page_number == index %}
+                        <li class="page-item active"><a class="page-link"
+                                                        href="/admin/user/display?nick={{ nickname }}&p_date={{ previous_date }}&n_date={{ next_date }}&page={{ index }}&size=={{ paginator.per_page }}">{{ index }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="/admin/user/display?nick={{ nickname }}&p_date={{ previous_date }}&n_date={{ next_date }}&page={{ index }}&size=={{ paginator.per_page }}">{{ index }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if paginator.has_more %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/user/display?nick={{ nickname }}&p_date={{ previous_date }}&n_date={{ next_date }}&page={{ paginator.num_pages }}&size=={{ paginator.per_page }}">...</a>
+                    </li>
+                {% endif %}
+                {% if page_number < paginator.num_pages %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/user/display?nick={{ nickname }}&p_date={{ previous_date }}&n_date={{ next_date }}&page={{ page_number|add:1 }}&size=={{ paginator.per_page }}">下一页</a>
+                    </li>
+                {% endif %}
+
+
+                <li class="page-item"><span class="page-link">共{{ paginator.num_pages }}页</span></li>
+
+
+            </ul>
+
+        </nav>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+
+
+    <!--Plugins JS-->
+    <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.min.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.active.js' %}"></script>
+
+    <script type="text/javascript">
+
+    </script>
+
+{% endblock %}

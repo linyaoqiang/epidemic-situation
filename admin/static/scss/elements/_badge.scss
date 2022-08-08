@@ -1,0 +1,147 @@
+/*--
+    - Badge
+--------------------------------------*/
+.badge {
+    font-weight: 600;
+    border: 1px solid;
+    padding: .35em .5em;
+    &.badge-outline {
+        background-color: transparent;
+    }
+}
+// Badge Colors
+.badge-primary {
+    background-color: $primary;
+    border-color: $primary;
+    &.badge-outline {
+        color: $primary;
+    }
+}
+.badge-secondary {
+    background-color: $secondary;
+    border-color: $secondary;
+    &.badge-outline {
+        color: $secondary;
+    }
+}
+.badge-success {
+    background-color: $success;
+    border-color: $success;
+    &.badge-outline {
+        color: $success;
+    }
+}
+.badge-danger {
+    background-color: $danger;
+    border-color: $danger;
+    &.badge-outline {
+        color: $danger;
+    }
+}
+.badge-warning {
+    background-color: $warning;
+    border-color: $warning;
+    color: $white;
+    &.badge-outline {
+        color: $warning;
+    }
+}
+.badge-info {
+    background-color: $info;
+    border-color: $info;
+    &.badge-outline {
+        color: $info;
+    }
+}
+.badge-dark {
+    background-color: $heading-color;
+    border-color: $heading-color;
+    &.badge-outline {
+        color: $heading-color;
+    }
+}
+// Badge Link
+a.badge-primary {
+    &:hover {
+        background-color: darken($primary, 10);
+        border-color: darken($primary, 10);    
+    }
+    &.badge-outline {
+        &:hover {
+            background-color: transparent !important;
+            color: darken($primary, 10);
+        }
+    }
+}
+a.badge-secondary {
+    &:hover {
+        background-color: darken($secondary, 10);
+        border-color: darken($secondary, 10);    
+    }
+    &.badge-outline {
+        &:hover {
+            background-color: transparent !important;
+            color: darken($secondary, 10);
+        }
+    }
+}
+a.badge-success {
+    &:hover {
+        background-color: darken($success, 10);
+        border-color: darken($success, 10);    
+    }
+    &.badge-outline {
+        &:hover {
+            background-color: transparent !important;
+            color: darken($success, 10);
+        }
+    }
+}
+a.badge-danger {
+    &:hover {
+        background-color: darken($danger, 10);
+        border-color: darken($danger, 10);    
+    }
+    &.badge-outline {
+        &:hover {
+            background-color: transparent !important;
+            color: darken($danger, 10);
+        }
+    }
+}
+a.badge-warning {
+    &:hover {
+        background-color: darken($warning, 10);
+        border-color: darken($warning, 10);
+        color: $white;
+    }
+    &.badge-outline {
+        &:hover {
+            background-color: transparent !important;
+            color: darken($warning, 10);
+        }
+    }
+}
+a.badge-info {
+    &:hover {
+        background-color: darken($info, 10);
+        border-color: darken($info, 10);    
+    }
+    &.badge-outline {
+        &:hover {
+            background-color: transparent !important;
+            color: darken($info, 10);
+        }
+    }
+}
+a.badge-dark {
+    &:hover {
+        
+    }
+    background-color: darken($heading-color, 10);
+    border-color: darken($heading-color, 10);
+    &.badge-outline {
+        background-color: transparent !important;
+        color: darken($heading-color, 10);
+    }
+}

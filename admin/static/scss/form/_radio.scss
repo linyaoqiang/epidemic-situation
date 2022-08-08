@@ -1,0 +1,238 @@
+/*--
+    - Radio (Custom)
+--------------------------------------*/
+
+/*Radio One*/
+.adomx-radio {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    line-height: 18px;
+    margin: 0;
+    cursor: default;
+    & input {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        width: 18px;
+        height: 18px;
+        visibility: hidden;
+        &:checked {
+            & + .icon {
+                border-color: $primary;
+                &::before {
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+    & .icon {
+        width: 18px;
+        height: 18px;
+        display: block;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 2px solid #bbbbbb;
+        transition: all 0.3s ease 0s;
+        &::before {
+            content: "";
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 8px;
+            height: 8px;
+            background-color: #aaaaaa;
+            transition: all 0.3s ease 0s;
+        }
+    }
+    // Colors
+    &.primary {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $primary;
+                    &::before {
+                        background-color: $primary;
+                    }
+                }
+            }
+        }
+    }
+    &.secondary {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $secondary;
+                    &::before {
+                        background-color: $secondary;
+                    }
+                }
+            }
+        }
+    }
+    &.success {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $success;
+                    &::before {
+                        background-color: $success;
+                    }
+                }
+            }
+        }
+    }
+    &.danger {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $danger;
+                    &::before {
+                        background-color: $danger;
+                    }
+                }
+            }
+        }
+    }
+    &.warning {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $warning;
+                    &::before {
+                        background-color: $warning;
+                    }
+                }
+            }
+        }
+    }
+    &.info {
+        & input {
+            &:checked {
+                & + .icon {
+                    border-color: $info;
+                    &::before {
+                        background-color: $info;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*Radio Two*/
+.adomx-radio-2 {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    line-height: 18px;
+    margin: 0;
+    cursor: default;
+    & input {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        width: 18px;
+        height: 18px;
+        visibility: hidden;
+        &:checked {
+            & + .icon {
+                background-color: $primary;
+                &::before {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    & .icon {
+        width: 18px;
+        height: 18px;
+        display: block;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #cccccc;
+        transition: all 0.3s ease 0s;
+        &::before {
+            content: "";
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            background-color: $white;
+            opacity: 0;
+            transform: scale(3);
+            transition: all 0.3s ease 0s;
+        }
+    }
+    // Colors
+    &.primary {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+    &.secondary {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $secondary;
+                }
+            }
+        }
+    }
+    &.success {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $success;
+                }
+            }
+        }
+    }
+    &.danger {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $danger;
+                }
+            }
+        }
+    }
+    &.warning {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $warning;
+                }
+            }
+        }
+    }
+    &.info {
+        & input {
+            &:checked {
+                & + .icon {
+                    background-color: $info;
+                }
+            }
+        }
+    }
+}

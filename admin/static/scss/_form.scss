@@ -1,0 +1,202 @@
+/*----------------------------------------*/
+/*  03. Form CSS
+/*----------------------------------------*/
+
+@import 'form/basic';
+@import 'form/checkbox';
+@import 'form/radio';
+@import 'form/range-slider';
+@import 'form/select';
+@import 'form/switch';
+
+/*Search Form*/
+.search-form {
+    & form {
+        position: relative;
+        width: 250px;
+        border-radius: 50px;
+        overflow: hidden;
+        & input {
+            width: 100%;
+            background-color: $light-grey;
+	        box-shadow: 0 0 7px rgba(0, 0, 0, 0.08) inset;
+            border: none;
+            border-radius: 50px;
+            line-height: 24px;
+            padding: 12px 20px;
+            font-size: 14px;
+            color: $body-light;
+        }
+        & .submit {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 20px;
+            background-color: transparent;
+            border: none;
+            color: $body-color;
+            & i {
+                line-height: 24px;
+                font-size: 20px;
+            }
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+}
+
+/*Adomx Checkbox Radio Group*/
+.adomx-checkbox-radio-group {
+    margin: -8px;
+    display: flex;
+    flex-direction: column;
+    &.inline {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    & [class*="adomx-checkbox"], & [class*="adomx-radio"], & [class*="adomx-switch"] {
+        margin: 8px;
+    }
+}
+
+/*Input File*/
+.input-file {
+    margin: 0;
+    position: relative;
+    width: 100%;
+    & input {
+        opacity: 0;
+        visibility: hidden;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+/*File Pond*/
+.filepond--root {
+    position: relative;
+    display: flex;
+    height: auto !important;
+    margin: -5px;
+    contain: unset;
+    & .filepond--drop-label {
+        max-width: 140px;
+        width: 100%;
+        height: 140px;
+        flex: 1 0 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 5px;
+        border: 1px solid #dddddd;
+        border-radius: 4px;
+        z-index: 99;
+        &::before {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            content: '\f21e';
+            font-family: $icon-mdif;
+            font-size: 30px;
+        }
+        & label {
+            display: none;
+        }
+    }
+    & .filepond--list-scroller {
+        position: relative;
+        transform: none !important;
+        margin: 5px;
+        height: auto;
+        & .filepond--list {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            left: 0;
+            right: 0;
+            margin: -5px;
+            &::before {
+                width: 140px;
+                height: 140px;
+                content: "";
+                margin: 5px;
+            }
+        }
+    }
+    & .filepond--panel-root {
+        display: none;
+    }
+}
+.filepond--list {
+    & .filepond--item {
+        position: relative;
+        max-width: 140px;
+        flex: 1 0 100%;
+        transform: none !important;
+        margin: 5px;
+        & .filepond--file-wrapper {
+            & .filepond--file {
+                border-radius: 4px;
+            }
+        }
+    }
+}
+.filepond--image-preview-wrapper {
+    border-radius: 4px;
+    & .filepond--image-preview {
+        & .filepond--image-clip {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+/*Dropify*/
+.dropify-wrapper {
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}
+
+/*Date Range Picker*/
+.daterangepicker {
+    & .ranges {
+        & ul {
+            & li {
+                &.active {
+                    background-color: $primary;
+                    &:hover {
+                        background-color: darken($primary, 5);
+                    }
+                }
+            }
+        }
+    }
+    & td {
+        &.active {
+            background-color: $primary;
+            &:hover {
+                background-color: $primary;
+            }
+        }
+    }
+    & .drp-buttons {
+        .btn {
+            &.btn-primary {
+                background-color: $primary;
+                border-color: transparent;
+                &:hover {
+                    background-color: darken($primary, 5);
+                }
+            }
+        }
+    }
+}
+
+.ql-container {
+    height: 250px;
+}

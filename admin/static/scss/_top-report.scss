@@ -1,0 +1,120 @@
+/*----------------------------------------*/
+/*  09. Top Report CSS
+/*----------------------------------------*/
+
+/*-- Top Report One --*/
+.top-report {
+    padding: 30px;
+    transition: all 0.3s ease 0s;
+    position: relative;
+    z-index: 1;
+    background-color: $light-grey;
+    /*-- Icon --*/
+    & .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+        & img {
+            max-width: 100%;
+        }
+    }
+    /*-- Head --*/
+    & .head {
+        padding-right: 20px;
+        position: relative;
+        margin-bottom: 20px;
+        & h4 {
+            font-weight: 600;
+            color: $primary;
+            margin: 0;
+            line-height: 20px;
+        }
+        & .view {
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: $secondary;
+            & i {
+                display: block;
+                font-size: 20px;
+                line-height: 1;
+            }
+        }
+    }
+    /*-- Content --*/
+    & .content {
+        margin-bottom: 20px;
+        & h5 {
+            color: $body-color;
+            margin-bottom: 1px;
+        }
+        & h2 {
+            color: $body-color;
+            margin-bottom: 0;
+        }
+    }
+    /*-- Footer --*/
+    & .footer {
+        & .progess {
+            margin-bottom: 8px;
+            display: block;
+            background-color: $light-blue;
+            height: 4px;
+            width: 100%;
+            & .progess-bar {
+                height: 100%;
+                background: $secondary;
+                background: linear-gradient(to right, $secondary 0%, #fbaaa2 100%);
+            }
+        }
+        & p {}
+    }
+    // Responsive
+    @media #{$extra-small-mobile}{
+        padding: 20px;
+    }
+}
+
+/*-- Top Report Two --*/
+.top-report-2 {
+    padding: 30px;
+    background: linear-gradient(to right, #ff9a9e 0%, #fad0c4 100%);
+    /*-- Head --*/
+    & .head {
+        margin-bottom: 18px;
+        & h4 {
+            color: $white;
+        }
+        & .view {
+            color: $white;
+        }
+    }
+    /*-- Content --*/
+    & .content {
+        margin-bottom: 15px;
+        & h5 {
+            color: $white;
+        }
+        & h2 {
+            color: $white;
+        }
+    }
+    /*-- Footer --*/
+    & .footer {
+        & .progess {
+            background-color: $white;
+            & .progess-bar {
+                height: 100%;
+                background: $danger;
+            }
+        }
+        & p {
+            color: $white;
+        }
+    }
+    // Responsive
+    @media #{$extra-small-mobile}{
+        padding: 20px;
+    }
+}

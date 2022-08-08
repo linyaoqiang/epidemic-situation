@@ -1,0 +1,94 @@
+/*----------------------------------------*/
+/*  17. News CSS
+/*----------------------------------------*/
+
+/*News Item*/
+.news-item {
+    margin-bottom: 35px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    & .categories {
+        display: flex;
+        margin-bottom: 10px;
+        & a {
+            line-height: 20px;
+            padding: 3px 14px;
+            border-radius: 50px;
+            color: $white;
+            margin-right: 13px;
+            margin-bottom: 5px;
+            &:last-child {
+                margin-right: 0;
+            }
+            &.new {
+                background-color: $success-light;
+                color: $heading-color;
+            }
+            &.product {
+                background-color: $primary;
+            }
+            &.support {
+                background-color: $secondary;
+            }
+            &.refund {
+                background-color: #edb984;
+            }
+        }
+    }
+    & .title {
+        font-weight: 600;
+        margin-bottom: 15px;
+        & a {
+            color: $body-color;
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+    & .meta {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        & li {
+            font-size: 14px;
+            line-height: 18px;
+            font-weight: 600;
+            color: $body-light;
+            &::after {
+                content: "-";
+                margin: 0 10px;
+                font-weight: 400;
+            }
+            &:last-child {
+                &::after {
+                    display: none;
+                }
+            }
+            & i {
+                font-size: 18px;
+                line-height: 18px;
+                margin-right: 10px;
+                color: $primary;
+                float: left;
+            }
+            & a {
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+        // Responsive
+        @media #{$extra-small-mobile}{
+            & li {
+                font-size: 12px;
+                &::after {
+                    margin: 0 6px;
+                }
+            }
+        }
+    }
+}
+
+

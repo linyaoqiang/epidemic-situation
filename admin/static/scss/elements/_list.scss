@@ -1,0 +1,176 @@
+/*--
+    - List
+--------------------------------------*/
+.list-unstyled {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.list-icon {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    & > li {
+        position: relative;
+        padding-left: 20px;
+        &::before {
+            font-size: 105%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-family: $icon-mdif,
+        }
+    }
+    // Colors
+    &.primary {
+        & > li {
+            &::before {
+                color: $primary;
+            }
+        }
+    }
+    &.secondary {
+        & > li {
+            &::before {
+                color: $secondary;
+            }
+        }
+    }
+    &.success {
+        & > li {
+            &::before {
+                color: $success;
+            }
+        }
+    }
+    &.danger {
+        & > li {
+            &::before {
+                color: $danger;
+            }
+        }
+    }
+    &.warning {
+        & > li {
+            &::before {
+                color: $warning;
+            }
+        }
+    }
+    &.info {
+        & > li {
+            &::before {
+                color: $info;
+            }
+        }
+    }
+}
+.list-check {
+    & > li {
+        &::before {
+            content: "\f26b";
+        }
+    }
+}
+.list-check-square {
+    & > li {
+        &::before {
+            content: "\f26a";
+        }
+    }
+}
+.list-ticked {
+    & > li {
+        &::before {
+            content: "\f267";
+        }
+    }
+}
+.list-star {
+    & > li {
+        &::before {
+            content: "\f27d";
+        }
+    }
+}
+.list-star-circle {
+    & > li {
+        &::before {
+            content: "\f27a";
+        }
+    }
+}
+.list-arrow {
+    & > li {
+        &::before {
+            content: "\f2ee";
+        }
+    }
+}
+.list-caret {
+    & > li {
+        &::before {
+            content: "\f2f6";
+        }
+    }
+}
+.list-chevron {
+    & > li {
+        &::before {
+            content: "\f2fb";
+        }
+    }
+}
+.list-long-arrow {
+    & > li {
+        &::before {
+            content: "\f301";
+        }
+    }
+}
+.list-forward {
+    & > li {
+        &::before {
+            content: "\f2fd";
+        }
+    }
+}
+/*List Group*/
+.list-group {
+    list-style: none;
+    & .list-group-item {
+        &.active {
+            background-color: $primary;
+            border-color: $primary;
+        }
+        &.disabled {
+            color: $body-light;
+        }
+        &.list-group-item-primary {
+            background-color: lighten($primary, 20);
+        }
+        &.list-group-item-secondary {
+            background-color: lighten($secondary, 20);
+        }
+        &.list-group-item-success {
+            background-color: lighten($success, 20);
+        }
+        &.list-group-item-danger {
+            background-color: lighten($danger, 20);
+        }
+        &.list-group-item-warning {
+            background-color: lighten($warning, 20);
+        }
+        &.list-group-item-info {
+            background-color: lighten($info, 20);
+        }
+        &.list-group-item-light {}
+        &.list-group-item-dark {
+            background-color: lighten($heading-color, 50);
+        }
+        
+        & .list-group {
+            margin-top: .75rem;
+        }
+    }
+}

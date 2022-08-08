@@ -1,0 +1,53 @@
+{% extends 'user_template/index.html' %}
+{% load static %}
+{% block content %}
+    <div class="layui-container">
+
+
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title" >当日健康上报</h2>
+                <div class="layui-colla-content layui-show">
+                    可以反复提交当日的健康上报，通过健康上报来及时发生疫情可能发生的位置并做出防控
+                </div>
+            </div>
+        </div>
+
+        <form class="layui-form" action="/health_report/upload" method="post">
+            {% csrf_token %}
+            {% for item in form %}
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 200px;">{{ item.label }}</label>
+                    <div class="layui-input-block" style="margin-left: 260px;">
+                        {{ item }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="upload">上报|更新</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        layui.use(['form', 'jquery', 'layer'], function(){
+          var form = layui.form;
+          var $ = layui.jquery;
+          var layer = layui.layer;
+
+            {% if message %}
+                layer.msg('{{ message }}');
+            {% endif %}
+
+
+          //提交
+          form.on('submit(upload)', function(data){
+            return true;
+          });
+});
+    </script>
+{% endblock %}

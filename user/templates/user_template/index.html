@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>疫情防控-人人有责</title>
+    <link rel="stylesheet" href="{% static 'plugins/layui/css/layui.css' %}">
+    <style>
+        html, body {
+            width: 100%;
+        }
+
+        .body-content {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        ul.layui-nav {
+            height: 80px;
+        }
+
+
+        ul.layui-nav li a {
+            font-size: 20px;
+            line-height: 80px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="body-content">
+    <ul class="layui-nav" lay-filter="" style="margin-bottom: 40px;">
+        <li class="layui-nav-item"><a href="#">疫情防控中心</a></li>
+        <li class="layui-nav-item {{ es_displaying }}"><a href="/es">风险地区</a></li>
+        <li class="layui-nav-item {{ case_displaying }}"><a href="/case">全国病例统计</a></li>
+        {% if request.session.user %}
+            <li class="layui-nav-item"><a href="/vaccines">预约疫苗</a></li>
+            <li class="layui-nav-item"><a href="/outpatient_department">发热门诊</a></li>
+            <li class="layui-nav-item"><a href="/area_policy">地区政策</a></li>
+            <li class="layui-nav-item"><a href="/health_report/upload">健康上报</a></li>
+        {% endif %}
+
+        <li class="layui-nav-item" style="float: right;">
+            {% if request.session.user %}
+                <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img">{{ request.session.user.nickname }}</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/user">个人信息管理</a></dd>
+                    <dd><a href="/vaccines/self">查看已经预约的疫苗</a></dd>
+                    <dd><a href="/logout">登出</a></dd>
+                </dl>
+            {% else %}
+                <a href="/login">登录</a>
+            {% endif %}
+        </li>
+    </ul>
+    {% block content %}
+
+    {% endblock %}
+
+
+</div>
+
+
+<script type="text/javascript" src="{% static 'plugins/layui/layui.js' %}"></script>
+
+<script>
+    //注意：导航 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+</script>
+
+{% block javascript %}
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>疫情防控登录</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <style>
+        .input-group .icon-user-name {
+            background-image: url({% static 'images/用户名.png' %});
+        }
+
+        .input-group .icon-password {
+            background-image: url({%  static 'images/密码.png' %});
+        }
+
+
+        .input-group .icon-true {
+            background-image: url({%  static 'images/true.png' %});
+            position: absolute;
+            right: 0px;
+            background-size: 50% 50%;
+            background-color: rgba(0, 0, 0, 0);
+            display: none;
+        }
+
+        html {
+            background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url({% static 'images/bg.jpg' %});
+        }
+
+        .message .icon {
+            /*display: inline-block;*/
+            width: 50px;
+            height: 50px;
+            margin: 20px auto;
+            background: url({% static 'images/true.png' %});
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+
+        }
+
+        .tip .icon {
+            margin-right: 10px;
+            float: left;
+            width: 20px;
+            height: 20px;
+            background-size: 100% 100%;
+            background-image: url({% static 'images/false.png' %});
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="/es"><img class="logo" src="{% static 'images/logo.png' %}"></a>
+    <div class="title">
+        <div class="login active">登录</div>
+        <div class="register">注册</div>
+    </div>
+    <form class="login-form active layui-form" action="/login" method="post">
+        {% csrf_token %}
+        <div>
+            <div class="input-group">
+                <span class="icon icon-user-name"></span>
+                <input class="input-user-name" type="text" lay-filter="username" name="username" required
+                       placeholder="用户名">
+                <span class="icon icon-true"></span>
+            </div>
+        </div>
+
+        <div>
+            <div class="input-group">
+                <span class="icon icon-password"></span>
+                <input class="input-password" type="password" lay-filter="password" name="password" required
+                       placeholder="密码">
+                <span class="icon icon-true"></span>
+            </div>
+        </div>
+
+        <button class="button-login input-group" lay-submit lay-filter="btn-login" type="submit">登录</button>
+    </form>
+    <form class="register-form layui-form" method="post" action="/register">
+        {% csrf_token %}
+        <div>
+            <div class="input-group">
+                <span class="icon icon-user-name"></span>
+                <input class="register-user-name" type="text" name="username" required placeholder="用户名">
+                <span class="icon icon-true"></span>
+            </div>
+        </div>
+        <div>
+            <div class="input-group">
+                <span class="icon icon-password"></span>
+                <input class="register-password" type="password" name="password" required placeholder="密码">
+                <span class="icon icon-true"></span>
+            </div>
+        </div>
+        <div>
+            <div class="input-group">
+                <span class="icon icon-password"></span>
+                <input class="register-password2" type="password" name="re_password" required placeholder="重复密码">
+                <span class="icon icon-true"></span>
+            </div>
+        </div>
+        <button class="button-register" lay-submit lay-filter="btn-register" type="submit">注册</button>
+    </form>
+</div>
+<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+<script type="text/javascript" src="{% static 'plugins/layui/layui.js' %}"></script>
+<script>
+    layui.use(['layer', 'form', 'jquery'], function () {
+        var layer = layui.layer;
+        var form = layui.form;
+        var $ = layer.jquery;
+
+        form.on('submit(btn-login)', function (data) {
+            return true;
+        });
+
+
+        form.on('submit(btn-register)', function (data) {
+            var user = data.field
+            if (user.password !== user.re_password) {
+                layer.msg('密码前后不一致');
+                return false;
+            }
+
+            return true;
+        })
+        {% if error_message %}
+            layer.msg('{{ error_message }}');
+        {% endif %}
+    });
+</script>
+</body>
+</html>

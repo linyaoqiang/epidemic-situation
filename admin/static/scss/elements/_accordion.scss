@@ -1,0 +1,257 @@
+/*--
+    - Accordion
+--------------------------------------*/
+.accordion {
+    // Card
+    & .card {
+        border: none;
+        margin-bottom: 10px;
+        border-radius: 0;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        // Card Header
+        & .card-header {
+            border: none;
+            border-radius: 0;
+            margin: 0;
+            padding: 0;
+            & h2 {
+                margin: 0;
+                font-size: 16px;
+                & button {
+                    display: block;
+                    background-color: transparent;
+                    border: none;
+                    font-weight: 600;
+                    position: relative;
+                    width: 100%;
+                    text-align: left;
+                    border-bottom: 1px solid #eeeeee;
+                    padding: 15px 20px;
+                    &.collapsed {
+                        border-bottom-color: transparent;
+                    }
+                }
+            }
+        }
+        // Collapse
+        & .collapse {
+            // Card Body
+            & .card-body {}
+        }
+        // Colors
+        &.primary, &.secondary, &.success, &.danger, &.warning, &.info {
+            // Card Header
+            & .card-header {
+                & h2 {
+                    color: $white;
+                    & button {
+                        &::before, &::after {
+                            background-color: $white !important;
+                        }
+                    }
+                }
+            }
+        }
+        &.primary {
+            // Card Header
+            & .card-header {
+                background-color: $primary !important;
+                border-color: $primary !important;
+            }
+        }
+        &.secondary {
+            // Card Header
+            & .card-header {
+                background-color: $secondary !important;
+                border-color: $secondary !important;
+            }
+        }
+        &.success {
+            // Card Header
+            & .card-header {
+                background-color: $success !important;
+                border-color: $success !important;
+            }
+        }
+        &.danger {
+            // Card Header
+            & .card-header {
+                background-color: $danger !important;
+                border-color: $danger !important;
+            }
+        }
+        &.warning {
+            // Card Header
+            & .card-header {
+                background-color: $warning !important;
+                border-color: $warning !important;
+            }
+        }
+        &.info {
+            // Card Header
+            & .card-header {
+                background-color: $info !important;
+                border-color: $info !important;
+            }
+        }
+    }
+    
+    // Accordion Icon
+    &.accordion-icon {
+        // Card
+        & .card {
+            // Card Header
+            & .card-header {
+                & h2 {
+                    & button {
+                        padding-right: 25px;
+                        &::before, &::after {
+                            content: "";
+                            position: absolute;
+                            right: 20px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 12px;
+                            height: 2px;
+                            background-color: $body-color;
+                            transition: all 0.3s ease 0s;
+                        }
+                        &::after {
+                            transform: translateY(-50%) rotate(0deg);
+                        }
+                        &.collapsed {
+                            &::after {
+                                transform: translateY(-50%) rotate(90deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+        
+    // Colors
+    &.primary, &.secondary, &.success, &.danger, &.warning, &.info {
+        & .card {
+            // Card Header
+            & .card-header {
+                & h2 {
+                    color: $white;
+                    & button {
+                        &::before, &::after {
+                            background-color: $white !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.primary {
+        & .card {
+            // Card Header
+            & .card-header {
+                background-color: $primary;
+                border-color: $primary;
+            }
+        }
+        &.accordion-border {
+            & .card {
+                border-color: $primary !important;
+                & .card-body {
+                    border-top-color: $primary !important;
+                }
+            }
+        }
+    }
+    &.secondary {
+        & .card {
+            // Card Header
+            & .card-header {
+                background-color: $secondary;
+                border-color: $secondary;
+            }
+        }
+        &.accordion-border {
+            & .card {
+                border-color: $secondary !important;
+                & .card-body {
+                    border-top-color: $secondary !important;
+                }
+            }
+        }
+    }
+    &.success {
+        & .card {
+            // Card Header
+            & .card-header {
+                background-color: $success;
+                border-color: $success;
+            }
+        }
+        &.accordion-border {
+            & .card {
+                border-color: $success !important;
+                & .card-body {
+                    border-top-color: $success !important;
+                }
+            }
+        }
+    }
+    &.danger {
+        & .card {
+            // Card Header
+            & .card-header {
+                background-color: $danger;
+                border-color: $danger;
+            }
+        }
+        &.accordion-border {
+            & .card {
+                border-color: $danger !important;
+                & .card-body {
+                    border-top-color: $danger !important;
+                }
+            }
+        }
+    }
+    &.warning {
+        & .card {
+            // Card Header
+            & .card-header {
+                background-color: $warning;
+                border-color: $warning;
+            }
+        }
+        &.accordion-border {
+            & .card {
+                border-color: $warning !important;
+                & .card-body {
+                    border-top-color: $warning !important;
+                }
+            }
+        }
+    }
+    &.info {
+        & .card {
+            // Card Header
+            & .card-header {
+                background-color: $info;
+                border-color: $info;
+            }
+        }
+        &.accordion-border {
+            & .card {
+                border-color: $info !important;
+                & .card-body {
+                    border-top-color: $info !important;
+                }
+            }
+        }
+    }
+}
+
+
+
+    

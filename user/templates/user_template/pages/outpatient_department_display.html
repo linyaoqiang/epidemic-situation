@@ -1,0 +1,218 @@
+{% extends 'user_template/index.html' %}
+{% load static %}
+{% block content %}
+    <div class="layui-container">
+
+
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">发热门诊</h2>
+                <div class="layui-colla-content layui-show">
+                    通过快速找到发热门诊来应当突发的情况!
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-form" style="margin-top: 20px;">
+            <div class="layui-form-item layui-inline">
+                <label for="province-select" class="layui-form-label">省份(自治区)</label>
+                <div class="layui-input-block">
+                    <select id="province-select" lay-filter="province">
+                        <option value="">-------</option>
+                        {% for item in provinces %}
+                            {% if province.id != item.id %}
+                                <option value="{{ item.id }}">{{ item.name }}</option>
+                            {% else %}
+                                <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item layui-inline">
+                <label for="city-select" class="layui-form-label">城市</label>
+                <div class="layui-input-block">
+                    <select id="city-select" lay-filter="city">
+                        <option value="">无</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-inline">
+                <label for="area-select" class="layui-form-label">区域</label>
+                <div class="layui-input-block">
+                    <select id="area-select" lay-filter="area">
+                        <option value="">无</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item layui-inline">
+                <button class="layui-btn layui-btn-normal"><a
+                        href="/outpatient_department">清除条件</a></button>
+            </div>
+        </div>
+
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>省份(自治区)</th>
+                <th>城市</th>
+                <th>地区</th>
+                <th>发热门诊名称</th>
+                <th>发热门诊地址</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in outpatient_departments %}
+                <tr>
+                    <td>{{ item.area.city.province.name }}</td>
+                    <td>{{ item.area.city.name }}</td>
+                    <td>{{ item.area.name }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.location }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="page">
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+
+        function changeProvince() {
+            var province_id = $('#province-select').val()
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            $.get('/admin/location/' + province_id, {}, function (data) {
+                var content = '<option value="">-------</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ city.id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    } else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#city-select').html(content);
+                form.render()
+            });
+        }
+
+        function changeCity() {
+            var province_id = $('#province-select').val();
+            var city_id = $('#city-select').val();
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            if (city_id === '' || city_id === undefined) {
+                return;
+            }
+
+            $.get('/admin/location/' + province_id + '/' + city_id, {}, function (data) {
+                var content = '<option>------</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ area.id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    } else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#area-select').html(content);
+                form.render()
+            });
+        }
+
+        function changeArea() {
+            var province_id = $('#province-select').val();
+            var city_id = $('#city-select').val();
+            var area_id = $('#area-select').val()
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+            if (city_id === '' || city_id === undefined) {
+                return;
+            }
+            if (area_id === '' || area_id === undefined) {
+                return;
+            }
+
+            window.location.href = '/outpatient_department?a_id=' + area_id
+
+        }
+
+
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+                , count: {{ paginator.count }} //数据总数，从服务端得到
+                , limits: [2, 4, 6, 8, 10]
+                , layout: ['prev', 'page', 'next', 'limit']
+                , groups: 10
+                , limit: {{ page_size }}
+                , curr: {{ page_number }}
+                , jump: function (obj, first) {
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        var api = '/outpatient_department?page=' + obj.curr + '&size=' + obj.limit
+                        api += '&a_id={{ area_id }}'
+                        window.location.href = api
+                    }
+                }
+            });
+        });
+
+        layui.use(['form', 'jquery', 'layer'], function () {
+            var form = layui.form;
+            window.$ = layui.jquery;
+            var layer = layui.layer;
+            window.form = form
+
+            form.on('select(province)', function (data) {
+                changeProvince();
+            });
+
+            form.on('select(city)', function (data) {
+                changeCity();
+            });
+
+            form.on('select(area)', function (data) {
+                changeArea();
+            });
+
+            {% if province.id != '' %}
+                changeProvince();
+            {% endif %}
+
+            {% if city.id != '' %}
+                changeCity();
+            {% endif %}
+
+        });
+
+
+    </script>
+{% endblock %}

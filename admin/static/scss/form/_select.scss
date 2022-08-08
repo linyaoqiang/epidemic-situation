@@ -1,0 +1,254 @@
+/*--
+    - Select
+--------------------------------------*/
+
+/*Select 2*/
+.select2-container--default {
+    &.select2 {
+        width: 100% !important;
+        background-color: $white;
+    }
+    & .select2-selection--single, & .select2-selection--multiple {
+        width: 100%;
+        background-color: transparent;
+        border: 1px solid #dddddd;
+        border-radius: 4px;
+        font-family: $body-font;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 10px 20px;
+        height: auto;
+        & .select2-selection__rendered {
+            line-height: 24px;
+            padding: 0;
+            color: $body-color;
+        }
+        & .select2-selection__arrow {
+            width: 46px;
+            height: 46px;
+            text-align: center;
+            &::before {
+                content: "\f2f9";
+                font-family: $icon-mdif;
+                font-size: 20px;
+                color: $body-light;
+                line-height: 46px;
+                display: block;
+            }
+            & b {
+                display: none;
+            }
+        }
+    }
+    & .select2-selection--multiple {
+        padding-top: 5px;
+        display: flex;
+        
+        & .select2-selection__choice {
+            border: none;
+            background-color: $primary;
+            color: $white;
+            font-size: 14px;
+            display: flex;
+            & .select2-selection__choice__remove {
+                color: inherit;
+                margin-right: 5px;
+                line-height: 22px;
+            }
+        }
+    }
+    &.select2-container--disabled {
+        & .select2-selection--single {
+            background-color: transparent;
+            border-color: #efefef;
+            & .select2-selection__rendered {
+                color: #cccccc;
+            }
+        }
+    }
+    &.select2-container--open {
+        & .select2-selection--single {
+            & .select2-selection__arrow {
+                &::before {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    & .select2-dropdown {
+        border-color: #dddddd;
+    }
+
+    & .select2-search--dropdown {
+        padding: 15px;
+        & .select2-search__field {
+            border-color: #dddddd;
+            border-radius: 4px;
+        }
+    }
+
+    & .select2-results {
+        & .select2-results__options {
+            & .select2-results__option {
+                padding: 5px 15px;
+                &[role="group"] {
+                    padding: 0;
+                }
+                & .select2-results__group {
+                    padding: 5px 15px;
+                }
+            }
+            & .select2-results__options--nested {
+                & .select2-results__option {
+                    padding: 5px 25px;
+                }
+            }
+        }
+    }
+}
+
+/*Nice Select*/
+.nice-select {
+    &::after {
+        width: 8px;
+        height: 8px;
+        right: 20px;
+    }
+    & .list {
+        width: 100%;
+        margin: 0;
+        border: 1px solid #dddddd;
+        box-shadow: none;
+        border-radius:  0 0 4px 4px;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+}
+
+/*Bootstrap Select*/
+.form-control {
+    &.bSelect {
+        &[readonly] {
+            background-color: transparent;
+            border-color: #dddddd;
+        }
+        &[disabled] {
+            background-color: transparent;
+            border-color: #efefef;
+            color: #cccccc;
+            @include placeholder {
+                color: #cccccc;
+            }
+        }
+        // Button
+        & .btn {
+            background-color: transparent;
+            border: 1px solid #dddddd;
+            padding: 10px 20px;
+            // Primary
+            &.btn-primary {
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+                &:hover {
+                    background-color: darken($primary, 5);
+                    border-color: darken($primary, 5);
+                    color: $white;
+                }
+            }
+            // Secondary
+            &.btn-secondary {
+                background-color: $secondary;
+                border-color: $secondary;
+                color: $white;
+                &:hover {
+                    background-color: darken($secondary, 5);
+                    border-color: darken($secondary, 5);
+                    color: $white;
+                }
+            }
+            // Success
+            &.btn-success {
+                background-color: $success;
+                border-color: $success;
+                color: $white;
+                &:hover {
+                    background-color: darken($success, 5);
+                    border-color: darken($success, 5);
+                    color: $white;
+                }
+            }
+            // Danger
+            &.btn-danger {
+                background-color: $danger;
+                border-color: $danger;
+                color: $white;
+                &:hover {
+                    background-color: darken($danger, 5);
+                    border-color: darken($danger, 5);
+                    color: $white;
+                }
+            }
+            // Warning
+            &.btn-warning {
+                background-color: $warning;
+                border-color: $warning;
+                color: $white;
+                &:hover {
+                    background-color: darken($warning, 5);
+                    border-color: darken($warning, 5);
+                    color: $white;
+                }
+            }
+            // Info
+            &.btn-info {
+                background-color: $info;
+                border-color: $info;
+                color: $white;
+                &:hover {
+                    background-color: darken($info, 5);
+                    border-color: darken($info, 5);
+                    color: $white;
+                }
+            }
+        }
+        // Dropdown Menu
+        & .dropdown-menu {
+            margin: 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        // State & Focus State
+        &.dark, &.focus-dark:focus {
+            border-color: $heading-color;
+        }
+        &.primary, &.focus-primary:focus {
+            border-color: $primary;
+        }
+        &.secondary, &.focus-secondary:focus {
+            border-color: $secondary;
+        }
+        &.success, &.focus-success:focus {
+            border-color: $success;
+        }
+        &.danger, &.focus-danger:focus {
+            border-color: $danger;
+        }
+        &.warning, &.focus-warning:focus {
+            border-color: $warning;
+        }
+        &.info, &.focus-info:focus {
+            border-color: $info;
+        }
+        // Size
+        &.form-control-sm {
+            padding: 5px 15px;
+            font-size: 12px;
+        }
+        &.form-control-lg {
+            padding: 15px 25px;
+            font-size: 16px;
+        }
+    }
+}

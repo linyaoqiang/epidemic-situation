@@ -1,0 +1,50 @@
+/*----------------------------------------*/
+/*  04. Table CSS
+/*----------------------------------------*/
+
+@import 'table/datatable';
+@import 'table/footable';
+@import 'table/jsgrid';
+
+/*Table Common Style*/
+.table {
+    white-space: nowrap;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    & thead, & tbody {
+        & tr {
+            & th, & td {
+                border-color: $grey;
+            }
+        }
+    }
+    &.table-vertical-middle {
+        & thead, & tbody {
+            & tr {
+                & th, & td {
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    & .adomx-checkbox, .adomx-checkbox-2 {
+        display: table;
+        padding-left: 18px;
+    }
+}
+/*Table Action Buttons*/
+.table-action-buttons {
+    min-width: 80px;
+    & .button {
+        width: 22px !important;
+        height: 22px !important;
+        margin-bottom: 0;
+        & i {
+            line-height: 22px;
+        }
+        &:focus {
+            color: $white;
+        }
+    }
+}

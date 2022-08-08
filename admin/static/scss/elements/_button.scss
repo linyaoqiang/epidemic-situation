@@ -1,0 +1,1518 @@
+/*--
+    - Button
+--------------------------------------*/
+
+/*Button Group*/
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    &.dropdown {
+        margin-bottom: 5px;
+    }
+    & .button {
+        margin: 0;
+        border-radius: 0;
+        &:first-child {
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        &:last-child {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        &.dropdown-toggle:not(:first-child) {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
+
+.button {
+    display: inline-block;
+    background-color: $light-blue;
+    border-color: $light-blue;
+    color: $body-color;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-size: 15px;
+    line-height: 24px;
+    padding: 7px 20px;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 5px;
+    margin-right: 2px;
+    &:last-child {
+        margin-right: 0;
+    }
+    & i {
+        font-size: 18px;
+        line-height: 24px;
+        margin-right: 6px;
+        float: left;
+    }
+    & span {
+        display: inline-block;
+    }
+    &:focus {
+        box-shadow: none;
+    }
+    &:hover {
+        background-color: darken($light-blue, 15);
+        border-color: darken($light-blue, 15);
+        color: $body-color;
+    }
+}
+
+// Button Link
+.button-link {
+    height: auto !important;
+    width: auto !important;
+    background-color: transparent;
+    border: none !important;
+    color: $body-color;
+    padding: 0 !important;
+    &:hover {
+        color: $primary;
+        background-color: transparent;
+        border: none;
+    }
+    
+    & i {
+        font-size: 22px;
+    }
+    
+    &.button-xs {
+        & i {
+            font-size: 16px;
+        }
+    }
+    &.button-sm {
+        & i {
+            font-size: 19px;
+        }
+    }
+    &.button-lg {
+        & i {
+            font-size: 26px;
+        }
+    }
+    &.button-xl {
+        & i {
+            font-size: 30px;
+        }
+    }
+}
+
+// Button Outline
+.button-outline {
+    background-color: transparent;
+    border-color: darken($light-blue, 5);
+    &:hover {
+        background-color: $light-blue;
+        border-color: $light-blue;
+    }
+}
+
+// Button Box
+.button-box {
+    width: 40px;
+    height: 40px;
+    padding: 7px 5px;
+    text-align: center;
+    & i {
+        margin: 0;
+        float: none;
+        display: block;
+    }
+    & span {
+        display: none;
+        margin: 0;
+    }
+}
+
+// Button Icon Right
+.button-icon-right {
+    flex-direction: row-reverse;
+    & i {
+        margin-left: 6px;
+        margin-right: 0;
+        float: right;
+    }
+}
+
+// Button State
+.button-square {
+    border-radius: 0;
+}
+.button-round {
+    border-radius: 50px;
+}
+
+/*-- Button Sizes --*/
+
+// Extra Small
+.button-xs {
+    font-size: 11px;
+    padding: 0 10px;
+    & i {
+        font-size: 13px;
+        margin-right: 5px;
+    }
+    & .button-icon-right {
+        & i {
+            margin-left: 5px;
+            margin-right: 0;
+        }
+    }
+    &.button-box {
+        width: 26px;
+        height: 26px;
+        padding: 0 5px;
+        & i {
+            margin: 0;
+        }
+    }
+}
+// Small
+.button-sm {
+    font-size: 13px;
+    padding: 3px 15px;
+    & i {
+        font-size: 16px;
+        margin-right: 6px;
+    }
+    & .button-icon-right {
+        & i {
+            margin-left: 6px;
+            margin-right: 0;
+        }
+    }
+    &.button-box {
+        width: 32px;
+        height: 32px;
+        padding: 3px 5px;
+        & i {
+            margin: 0;
+        }
+    }
+}
+// Large
+.button-lg {
+    font-size: 17px;
+    padding: 11px 25px;
+    & i {
+        font-size: 20px;
+    }
+    &.button-box {
+        width: 48px;
+        height: 48px;
+        padding: 11px 5px;
+        & i {
+            margin: 0;
+        }
+    }
+}
+// Extra Large
+.button-xl {
+    font-size: 19px;
+    padding: 15px 30px;
+    & i {
+        font-size: 24px
+    }
+    &.button-box {
+        width: 56px;
+        height: 56px;
+        padding: 15px 5px;
+        & i {
+            margin: 0;
+        }
+    }
+}
+
+/*-- Button Colors --*/
+
+// Primary
+.button-primary {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $primary;
+        &:hover {
+            background-color: $primary;
+            border-color: $primary;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: darken($primary, 5);
+        border-color: darken($primary, 5);
+        color: $white;
+    }
+}
+// Secondary
+.button-secondary {
+    background-color: $secondary;
+    border-color: $secondary;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $secondary;
+        &:hover {
+            background-color: $secondary;
+            border-color: $secondary;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: darken($secondary, 5);
+        border-color: darken($secondary, 5);
+        color: $white;
+    }
+}
+// Success
+.button-success {
+    background-color: $success;
+    border-color: $success;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $success;
+        &:hover {
+            background-color: $success;
+            border-color: $success;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: darken($success, 5);
+        border-color: darken($success, 5);
+        color: $white;
+    }
+}
+// Danger
+.button-danger {
+    background-color: $danger;
+    border-color: $danger;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $danger;
+        &:hover {
+            background-color: $danger;
+            border-color: $danger;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: darken($danger, 5);
+        border-color: darken($danger, 5);
+        color: $white;
+    }
+}
+// Warning
+.button-warning {
+    background-color: $warning;
+    border-color: $warning;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $warning;
+        &:hover {
+            background-color: $warning;
+            border-color: $warning;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: darken($warning, 5);
+        border-color: darken($warning, 5);
+        color: $white;
+    }
+}
+// Info
+.button-info {
+    background-color: $info;
+    border-color: $info;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $info;
+        &:hover {
+            background-color: $info;
+            border-color: $info;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: darken($info, 5);
+        border-color: darken($info, 5);
+        color: $white;
+    }
+}
+// Dark
+.button-dark {
+    background-color: $heading-color;
+    border-color: $heading-color;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $heading-color;
+        &:hover {
+            background-color: $heading-color;
+            border-color: $heading-color;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($heading-color, 5);
+        border-color: lighten($heading-color, 5);
+        color: $white;
+    }
+}
+
+/*-- Button Socails --*/
+
+// Android
+.button-android {
+    background-color: $android;
+    border-color: $android;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $android;
+        &:hover {
+            background-color: $android;
+            border-color: $android;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($android, 5);
+        border-color: lighten($android, 5);
+        color: $white;
+    }
+}
+// Apple
+.button-apple {
+    background-color: $apple;
+    border-color: $apple;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $apple;
+        &:hover {
+            background-color: $apple;
+            border-color: $apple;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($apple, 5);
+        border-color: lighten($apple, 5);
+        color: $white;
+    }
+}
+// Behance
+.button-behance {
+    background-color: $behance;
+    border-color: $behance;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $behance;
+        &:hover {
+            background-color: $behance;
+            border-color: $behance;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($behance, 5);
+        border-color: lighten($behance, 5);
+        color: $white;
+    }
+}
+// Codepen
+.button-codepen {
+    background-color: $codepen;
+    border-color: $codepen;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $codepen;
+        &:hover {
+            background-color: $codepen;
+            border-color: $codepen;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($codepen, 5);
+        border-color: lighten($codepen, 5);
+        color: $white;
+    }
+}
+// Dribbble
+.button-dribbble {
+    background-color: $dribbble;
+    border-color: $dribbble;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $dribbble;
+        &:hover {
+            background-color: $dribbble;
+            border-color: $dribbble;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($dribbble, 5);
+        border-color: lighten($dribbble, 5);
+        color: $white;
+    }
+}
+// Dropbox
+.button-dropbox {
+    background-color: $dropbox;
+    border-color: $dropbox;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $dropbox;
+        &:hover {
+            background-color: $dropbox;
+            border-color: $dropbox;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($dropbox, 5);
+        border-color: lighten($dropbox, 5);
+        color: $white;
+    }
+}
+// Evernote
+.button-evernote {
+    background-color: $evernote;
+    border-color: $evernote;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $evernote;
+        &:hover {
+            background-color: $evernote;
+            border-color: $evernote;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($evernote, 5);
+        border-color: lighten($evernote, 5);
+        color: $white;
+    }
+}
+// Facebook
+.button-facebook {
+    background-color: $facebook;
+    border-color: $facebook;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $facebook;
+        &:hover {
+            background-color: $facebook;
+            border-color: $facebook;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($facebook, 5);
+        border-color: lighten($facebook, 5);
+        color: $white;
+    }
+}
+// github
+.button-github {
+    background-color: $github;
+    border-color: $github;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $github;
+        &:hover {
+            background-color: $github;
+            border-color: $github;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($github, 5);
+        border-color: lighten($github, 5);
+        color: $white;
+    }
+}
+// Google Drive
+.button-google-drive {
+    background-color: $google-drive;
+    border-color: $google-drive;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $google-drive;
+        &:hover {
+            background-color: $google-drive;
+            border-color: $google-drive;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($google-drive, 5);
+        border-color: lighten($google-drive, 5);
+        color: $white;
+    }
+}
+// Google Earth
+.button-google-earth {
+    background-color: $google-earth;
+    border-color: $google-earth;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $google-earth;
+        &:hover {
+            background-color: $google-earth;
+            border-color: $google-earth;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($google-earth, 5);
+        border-color: lighten($google-earth, 5);
+        color: $white;
+    }
+}
+// Google Glass
+.button-google-glass {
+    background-color: $google-glass;
+    border-color: $google-glass;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $google-glass;
+        &:hover {
+            background-color: $google-glass;
+            border-color: $google-glass;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($google-glass, 5);
+        border-color: lighten($google-glass, 5);
+        color: $white;
+    }
+}
+// Google Maps
+.button-google-maps {
+    background-color: $google-maps;
+    border-color: $google-maps;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $google-maps;
+        &:hover {
+            background-color: $google-maps;
+            border-color: $google-maps;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($google-maps, 5);
+        border-color: lighten($google-maps, 5);
+        color: $white;
+    }
+}
+// Google Play
+.button-google-play {
+    background-color: $google-play;
+    border-color: $google-play;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $google-play;
+        &:hover {
+            background-color: $google-play;
+            border-color: $google-play;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($google-play, 5);
+        border-color: lighten($google-play, 5);
+        color: $white;
+    }
+}
+// Google Plus
+.button-google-plus {
+    background-color: $google-plus;
+    border-color: $google-plus;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $google-plus;
+        &:hover {
+            background-color: $google-plus;
+            border-color: $google-plus;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($google-plus, 5);
+        border-color: lighten($google-plus, 5);
+        color: $white;
+    }
+}
+// Google
+.button-google {
+    background-color: $google;
+    border-color: $google;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $google;
+        &:hover {
+            background-color: $google;
+            border-color: $google;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($google, 5);
+        border-color: lighten($google, 5);
+        color: $white;
+    }
+}
+// Instagram
+.button-instagram {
+    background-color: $instagram;
+    border-color: $instagram;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $instagram;
+        &:hover {
+            background-color: $instagram;
+            border-color: $instagram;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($instagram, 5);
+        border-color: lighten($instagram, 5);
+        color: $white;
+    }
+}
+// CSS 3
+.button-css3 {
+    background-color: $css3;
+    border-color: $css3;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $css3;
+        &:hover {
+            background-color: $css3;
+            border-color: $css3;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($css3, 5);
+        border-color: lighten($css3, 5);
+        color: $white;
+    }
+}
+// HTML 5
+.button-html5 {
+    background-color: $html5;
+    border-color: $html5;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $html5;
+        &:hover {
+            background-color: $html5;
+            border-color: $html5;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($html5, 5);
+        border-color: lighten($html5, 5);
+        color: $white;
+    }
+}
+// JavaScript
+.button-javascript {
+    background-color: $javascript;
+    border-color: $javascript;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $javascript;
+        &:hover {
+            background-color: $javascript;
+            border-color: $javascript;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($javascript, 5);
+        border-color: lighten($javascript, 5);
+        color: $white;
+    }
+}
+// Python
+.button-python {
+    background-color: $python;
+    border-color: $python;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $python;
+        &:hover {
+            background-color: $python;
+            border-color: $python;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($python, 5);
+        border-color: lighten($python, 5);
+        color: $white;
+    }
+}
+// Lastfm
+.button-lastfm {
+    background-color: $lastfm;
+    border-color: $lastfm;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $lastfm;
+        &:hover {
+            background-color: $lastfm;
+            border-color: $lastfm;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($lastfm, 5);
+        border-color: lighten($lastfm, 5);
+        color: $white;
+    }
+}
+// Linkedin
+.button-linkedin {
+    background-color: $linkedin;
+    border-color: $linkedin;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $linkedin;
+        &:hover {
+            background-color: $linkedin;
+            border-color: $linkedin;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($linkedin, 5);
+        border-color: lighten($linkedin, 5);
+        color: $white;
+    }
+}
+// Paypal
+.button-paypal {
+    background-color: $paypal;
+    border-color: $paypal;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $paypal;
+        &:hover {
+            background-color: $paypal;
+            border-color: $paypal;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($paypal, 5);
+        border-color: lighten($paypal, 5);
+        color: $white;
+    }
+}
+// Pinterest
+.button-pinterest {
+    background-color: $pinterest;
+    border-color: $pinterest;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $pinterest;
+        &:hover {
+            background-color: $pinterest;
+            border-color: $pinterest;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($pinterest, 5);
+        border-color: lighten($pinterest, 5);
+        color: $white;
+    }
+}
+// Pocket
+.button-pocket {
+    background-color: $pocket;
+    border-color: $pocket;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $pocket;
+        &:hover {
+            background-color: $pocket;
+            border-color: $pocket;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($pocket, 5);
+        border-color: lighten($pocket, 5);
+        color: $white;
+    }
+}
+// Polymer
+.button-polymer {
+    background-color: $polymer;
+    border-color: $polymer;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $polymer;
+        &:hover {
+            background-color: $polymer;
+            border-color: $polymer;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($polymer, 5);
+        border-color: lighten($polymer, 5);
+        color: $white;
+    }
+}
+// RSS
+.button-rss {
+    background-color: $rss;
+    border-color: $rss;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $rss;
+        &:hover {
+            background-color: $rss;
+            border-color: $rss;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($rss, 5);
+        border-color: lighten($rss, 5);
+        color: $white;
+    }
+}
+// Share
+.button-share {
+    background-color: $share;
+    border-color: $share;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $share;
+        &:hover {
+            background-color: $share;
+            border-color: $share;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($share, 5);
+        border-color: lighten($share, 5);
+        color: $white;
+    }
+}
+// Stackoverflow
+.button-stackoverflow {
+    background-color: $stackoverflow;
+    border-color: $stackoverflow;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $stackoverflow;
+        &:hover {
+            background-color: $stackoverflow;
+            border-color: $stackoverflow;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($stackoverflow, 5);
+        border-color: lighten($stackoverflow, 5);
+        color: $white;
+    }
+}
+// Steam
+.button-steam {
+    background-color: $steam;
+    border-color: $steam;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $steam;
+        &:hover {
+            background-color: $steam;
+            border-color: $steam;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($steam, 5);
+        border-color: lighten($steam, 5);
+        color: $white;
+    }
+}
+// Twitter
+.button-twitter {
+    background-color: $twitter;
+    border-color: $twitter;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $twitter;
+        &:hover {
+            background-color: $twitter;
+            border-color: $twitter;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($twitter, 5);
+        border-color: lighten($twitter, 5);
+        color: $white;
+    }
+}
+// VK
+.button-vk {
+    background-color: $vk;
+    border-color: $vk;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $vk;
+        &:hover {
+            background-color: $vk;
+            border-color: $vk;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($vk, 5);
+        border-color: lighten($vk, 5);
+        color: $white;
+    }
+}
+// Wikipedia
+.button-wikipedia {
+    background-color: $wikipedia;
+    border-color: $wikipedia;
+    color: $heading-color;
+    &.button-outline {
+        background-color: transparent;
+        color: $heading-color;
+        &:hover {
+            background-color: $wikipedia;
+            border-color: $wikipedia;
+            color: $heading-color;
+        }
+    }
+    &:hover {
+        background-color: lighten($wikipedia, 5);
+        border-color: lighten($wikipedia, 5);
+        color: $heading-color;
+    }
+}
+// Windows
+.button-windows {
+    background-color: $windows;
+    border-color: $windows;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $windows;
+        &:hover {
+            background-color: $windows;
+            border-color: $windows;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($windows, 5);
+        border-color: lighten($windows, 5);
+        color: $white;
+    }
+}
+// 500px
+.button-500px {
+    background-color: $s500px;
+    border-color: $s500px;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $s500px;
+        &:hover {
+            background-color: $s500px;
+            border-color: $s500px;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($s500px, 5);
+        border-color: lighten($s500px, 5);
+        color: $white;
+    }
+}
+// 8tracks
+.button-8tracks {
+    background-color: $s8tracks;
+    border-color: $s8tracks;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $s8tracks;
+        &:hover {
+            background-color: $s8tracks;
+            border-color: $s8tracks;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($s8tracks, 5);
+        border-color: lighten($s8tracks, 5);
+        color: $white;
+    }
+}
+// Amazon
+.button-amazon {
+    background-color: $amazon;
+    border-color: $amazon;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $amazon;
+        &:hover {
+            background-color: $amazon;
+            border-color: $amazon;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($amazon, 5);
+        border-color: lighten($amazon, 5);
+        color: $white;
+    }
+}
+// Blogger
+.button-blogger {
+    background-color: $blogger;
+    border-color: $blogger;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $blogger;
+        &:hover {
+            background-color: $blogger;
+            border-color: $blogger;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($blogger, 5);
+        border-color: lighten($blogger, 5);
+        color: $white;
+    }
+}
+// Delicious
+.button-delicious {
+    background-color: $delicious;
+    border-color: $delicious;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $delicious;
+        &:hover {
+            background-color: $delicious;
+            border-color: $delicious;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($delicious, 5);
+        border-color: lighten($delicious, 5);
+        color: $white;
+    }
+}
+// Disqus
+.button-disqus {
+    background-color: $disqus;
+    border-color: $disqus;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $disqus;
+        &:hover {
+            background-color: $disqus;
+            border-color: $disqus;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($disqus, 5);
+        border-color: lighten($disqus, 5);
+        color: $white;
+    }
+}
+// Flattr
+.button-flattr {
+    background-color: $flattr;
+    border-color: $flattr;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $flattr;
+        &:hover {
+            background-color: $flattr;
+            border-color: $flattr;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($flattr, 5);
+        border-color: lighten($flattr, 5);
+        color: $white;
+    }
+}
+// Flickr
+.button-flickr {
+    background-color: $flickr;
+    border-color: $flickr;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $flickr;
+        &:hover {
+            background-color: $flickr;
+            border-color: $flickr;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($flickr, 5);
+        border-color: lighten($flickr, 5);
+        color: $white;
+    }
+}
+// Odnoklassniki
+.button-odnoklassniki {
+    background-color: $odnoklassniki;
+    border-color: $odnoklassniki;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $odnoklassniki;
+        &:hover {
+            background-color: $odnoklassniki;
+            border-color: $odnoklassniki;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($odnoklassniki, 5);
+        border-color: lighten($odnoklassniki, 5);
+        color: $white;
+    }
+}
+// Outlook
+.button-outlook {
+    background-color: $outlook;
+    border-color: $outlook;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $outlook;
+        &:hover {
+            background-color: $outlook;
+            border-color: $outlook;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($outlook, 5);
+        border-color: lighten($outlook, 5);
+        color: $white;
+    }
+}
+// Playstation
+.button-playstation {
+    background-color: $playstation;
+    border-color: $playstation;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $playstation;
+        &:hover {
+            background-color: $playstation;
+            border-color: $playstation;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($playstation, 5);
+        border-color: lighten($playstation, 5);
+        color: $white;
+    }
+}
+// Reddit
+.button-reddit {
+    background-color: $reddit;
+    border-color: $reddit;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $reddit;
+        &:hover {
+            background-color: $reddit;
+            border-color: $reddit;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($reddit, 5);
+        border-color: lighten($reddit, 5);
+        color: $white;
+    }
+}
+// Skype
+.button-skype {
+    background-color: $skype;
+    border-color: $skype;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $skype;
+        &:hover {
+            background-color: $skype;
+            border-color: $skype;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($skype, 5);
+        border-color: lighten($skype, 5);
+        color: $white;
+    }
+}
+// Slideshare
+.button-slideshare {
+    background-color: $slideshare;
+    border-color: $slideshare;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $slideshare;
+        &:hover {
+            background-color: $slideshare;
+            border-color: $slideshare;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($slideshare, 5);
+        border-color: lighten($slideshare, 5);
+        color: $white;
+    }
+}
+// SoundCloud
+.button-soundcloud {
+    background-color: $soundcloud;
+    border-color: $soundcloud;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $soundcloud;
+        &:hover {
+            background-color: $soundcloud;
+            border-color: $soundcloud;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($soundcloud, 5);
+        border-color: lighten($soundcloud, 5);
+        color: $white;
+    }
+}
+// Tumblr
+.button-tumblr {
+    background-color: $tumblr;
+    border-color: $tumblr;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $tumblr;
+        &:hover {
+            background-color: $tumblr;
+            border-color: $tumblr;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($tumblr, 5);
+        border-color: lighten($tumblr, 5);
+        color: $white;
+    }
+}
+// Twitch
+.button-twitch {
+    background-color: $twitch;
+    border-color: $twitch;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $twitch;
+        &:hover {
+            background-color: $twitch;
+            border-color: $twitch;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($twitch, 5);
+        border-color: lighten($twitch, 5);
+        color: $white;
+    }
+}
+// Vimeo
+.button-vimeo {
+    background-color: $vimeo;
+    border-color: $vimeo;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $vimeo;
+        &:hover {
+            background-color: $vimeo;
+            border-color: $vimeo;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($vimeo, 5);
+        border-color: lighten($vimeo, 5);
+        color: $white;
+    }
+}
+// Whatsapp
+.button-whatsapp {
+    background-color: $whatsapp;
+    border-color: $whatsapp;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $whatsapp;
+        &:hover {
+            background-color: $whatsapp;
+            border-color: $whatsapp;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($whatsapp, 5);
+        border-color: lighten($whatsapp, 5);
+        color: $white;
+    }
+}
+// Xbox
+.button-xbox {
+    background-color: $xbox;
+    border-color: $xbox;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $xbox;
+        &:hover {
+            background-color: $xbox;
+            border-color: $xbox;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($xbox, 5);
+        border-color: lighten($xbox, 5);
+        color: $white;
+    }
+}
+// Yahoo
+.button-yahoo {
+    background-color: $yahoo;
+    border-color: $yahoo;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $yahoo;
+        &:hover {
+            background-color: $yahoo;
+            border-color: $yahoo;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($yahoo, 5);
+        border-color: lighten($yahoo, 5);
+        color: $white;
+    }
+}
+// Youtube
+.button-youtube {
+    background-color: $youtube;
+    border-color: $youtube;
+    color: $white;
+    &.button-outline {
+        background-color: transparent;
+        color: $youtube;
+        &:hover {
+            background-color: $youtube;
+            border-color: $youtube;
+            color: $white;
+        }
+    }
+    &:hover {
+        background-color: lighten($youtube, 5);
+        border-color: lighten($youtube, 5);
+        color: $white;
+    }
+}

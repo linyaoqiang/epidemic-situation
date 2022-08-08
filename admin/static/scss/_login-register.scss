@@ -1,0 +1,91 @@
+/*----------------------------------------*/
+/*  16. Login & Resister CSS
+/*----------------------------------------*/
+
+/*Login & Resister Wrapper*/
+.login-register-wrap {
+    padding: 0 15px;
+}
+
+/*Login & Resister BG*/
+.login-register-bg {
+    background-image: url(../images/bg/login-register-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .content {
+        display: none;
+        max-width: 420px;
+        padding: 100px 30px;
+        & h1 {
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: $white;
+        }
+        & p {
+            margin-bottom: 0;
+            color: $white;
+        }
+    }
+    // Responsive
+    @media #{$tablet-device, $large-mobile} {
+        min-height: auto;
+        & .content {
+            display: block;
+        }
+    }
+    @media #{$large-mobile} {
+        & .content {
+            padding-top: 50px;
+            padding-bottom: 50px;
+            & h1 {
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+/*Login & Resister Form Wrapper*/
+.login-register-form-wrap {
+    max-width: 420px;
+    padding: 50px 15px;
+    & .content {
+        & h1 {
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+        & p {
+            margin-bottom: 30px;
+        }
+    }
+    // Responsive
+    @media #{$tablet-device, $large-mobile} {
+        & .content {
+            display: none;
+        }
+    }
+    @media #{$large-mobile} {
+        & .content {
+            & h1 {
+                font-size: 30px;
+            }
+        }
+    }
+}
+/*Login & Resister Form*/
+.login-register-form {
+    max-width: 370px;
+    & a {
+        color: $primary;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,0 +1,102 @@
+/*--
+    - Avatar
+--------------------------------------*/
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    background-color: $grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    color: $primary;
+    & img {
+        border-radius: 50%;
+        width: 100%;
+    }
+    & .status {
+        position: absolute;
+        right: 0;
+        bottom: 2px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: block;
+        background-color: $body-light;
+        box-shadow: 0 0 0 2px $light-grey;
+    }
+    &.online {
+        & .status {
+            background-color: $success;
+        }
+    }
+    &.away {
+        & .status {
+            background-color: $warning;
+        }
+    }
+    &.donot {
+        & .status {
+            background-color: $danger;
+        }
+    }
+    &.invisible {
+        visibility: visible !important;
+        & .status {
+            background-color: $white;
+            border: 1px solid $body-color;
+        }
+    }
+    // Sizes
+    &.avatar-xs {
+        width: 26px;
+        height: 26px;
+        font-size: 8px;
+        & .status {
+            width: 6px;
+            height: 6px;
+            bottom: 1px;
+        }
+    }
+    &.avatar-sm {
+        width: 34px;
+        height: 34px;
+        font-size: 10px;
+    }
+    &.avatar-lg {
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+        & .status {
+            width: 10px;
+            height: 10px;
+        }
+    }
+    &.avatar-xl {
+        width: 65px;
+        height: 65px;
+        font-size: 18px;
+        & .status {
+            width: 12px;
+            height: 12px;
+            bottom: 2px;
+            right: 1px;
+        }
+    }
+    &.avatar-xxl {
+        width: 90px;
+        height: 90px;
+        font-size: 24px;
+        & .status {
+            width: 16px;
+            height: 16px;
+            bottom: 0;
+            right: 5px;
+            box-shadow: 0 0 0 3px $light-grey;
+        }
+    }
+}

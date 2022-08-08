@@ -1,0 +1,343 @@
+/*----------------------------------------*/
+/*  08. Side Header CSS
+/*----------------------------------------*/
+.side-header {
+    width: 270px !important;
+    background-color: $dark;
+    height: calc(100vh - 110px);
+    position: fixed;
+    left: 0;
+    top: 110px;
+    transition: all 0.3s ease 0s;
+    z-index: 1100;
+    padding: 30px 0;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1);
+    // Hide
+    &.hide {
+        left: -270px;
+        & + .content-body, & ~ .footer-section {
+            margin-left: 0;
+        }
+    }
+    // Show
+    &.show {
+        left: 0;
+        & + .content-body, & ~ .footer-section {
+            margin-left: 270px;
+        }
+    }
+    // Side Header Close
+    & .side-header-close {
+        border: none;
+        background-color: $dark;
+        color: $white;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        right: 0;
+        padding: 5px;
+        text-align: center;
+        box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        & i {
+            font-size: 24px;
+            line-height: 30px;
+        }
+    }
+    // Inner
+    & .side-header-inner {
+        height: 100%;
+        padding: 0 25px 0 0;
+    }
+    
+    // Responsive
+    @media #{$desktop-device, $tablet-device, $large-mobile}{
+        &.show {
+            left: 0;
+            & + .content-body, & ~ .footer-section {
+                margin-left: 0;
+            }
+        }
+    }
+    @media #{$tablet-device}{
+        top: 80px;
+        height: calc(100vh - 80px);
+    }
+    @media #{$large-mobile}{
+        top: 0;
+        height: 100vh;
+        &.show {
+            & .side-header-close {
+                right: -40px;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+/*-- Side Header Menu --*/
+.side-header-menu {
+    white-space: nowrap;
+    float: left;
+    & > ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        & > li {
+            position: relative;
+            float: left;
+            width: 100%;
+            & > a {
+                position: relative;
+                display: flex;
+                font-size: 14px;
+                color: #8b8d9b;
+                line-height: 20px;
+                padding: 12px 0 12px 25px;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 0;
+                    background-color: $primary;
+                }
+                & i {
+                    font-size: 16px;
+                    line-height: 20px;
+                    float: left;
+                    width: 20px;
+                    text-align: center;
+                }
+                & span {
+                    margin-left: 10px;
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+                & .menu-expand {
+                    position: absolute;
+                    margin: 0;
+                    right: 0;
+                    top: 15px;
+                }
+            }
+            &.active, &:hover {
+                & > a {
+                    color: $primary;
+                    &::before {
+                        width: 3px;
+                    }
+                }
+            }
+        }
+    }
+}
+/*-- Sub Menu --*/
+.side-header-sub-menu {
+    float: left;
+    width: 100%;
+    padding-left: 25px;
+    display: none;
+    list-style: none;
+    & li {
+        margin: 10px 0;
+        & a {
+            position: relative;
+            display: flex;
+            color: #8b8d9b;
+            font-size: 14px;
+            line-height: 18px;
+            padding: 5px 0 5px 30px;
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 0;
+                background-color: $primary;
+            }
+            & span {
+                margin-left: 15px;
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+            & .menu-expand {
+                position: absolute;
+                margin: 0;
+                right: 0;
+                top: 10px;
+            }
+        }
+        &.active, &:hover {
+            & > a {
+                color: $primary;
+                &::before {
+                    width: 3px;
+                }
+            }
+        }
+    }
+}
+
+
+/*--
+    - Custom Side Header Color CSS
+--------------------------------------*/
+body.side-header-light {
+    & .side-header {
+        background-color: $light-grey;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $light-grey;
+        }
+    }
+    & .side-header-menu {
+        & > ul {
+            & > li {
+                & > a {
+                    color: $body-color;
+                }
+                &.active, &:hover {
+                    & > a {
+                        color: $primary;
+                    }
+                }
+            }
+        }
+    }
+    & .side-header-sub-menu {
+        & li {
+            & > a {
+                    color: $body-color;
+            }
+            &.active, &:hover {
+                & > a {
+                    color: $primary;
+                }
+            }
+        }
+    }
+    
+}
+
+body.side-header-primary, body.side-header-secondary, body.side-header-indigo, body.side-header-purple, body.side-header-pink, body.side-header-red, body.side-header-brown, body.side-header-orange, body.side-header-green {
+    & .side-header-menu {
+        & > ul {
+            & > li {
+                & > a {
+                    color: $white;
+                }
+                &.active, &:hover {
+                    & > a {
+                        color: $white;
+                        &::before {
+                            background-color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    & .side-header-sub-menu {
+        & li {
+            & > a {
+                color: $white;
+            }
+            &.active, &:hover {
+                & > a {
+                    color: $white;
+                    &::before {
+                        background-color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body.side-header-primary {
+    & .side-header {
+        background-color: $primary;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $primary;
+        }
+    }
+}
+body.side-header-secondary {
+    & .side-header {
+        background-color: $secondary;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $secondary;
+        }
+    }
+}
+body.side-header-indigo {
+    & .side-header {
+        background-color: $indigo;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $indigo;
+        }
+    }
+}
+body.side-header-purple {
+    & .side-header {
+        background-color: $purple;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $purple;
+        }
+    }
+}
+body.side-header-pink {
+    & .side-header {
+        background-color: $pink;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $pink;
+        }
+    }
+}
+body.side-header-red {
+    & .side-header {
+        background-color: $red;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $red;
+        }
+    }
+}
+body.side-header-brown {
+    & .side-header {
+        background-color: $brown;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $brown;
+        }
+    }
+}
+body.side-header-orange {
+    & .side-header {
+        background-color: $orange;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $orange;
+        }
+    }
+}
+body.side-header-green {
+    & .side-header {
+        background-color: $green;
+        // Side Header Close
+        & .side-header-close {
+            background-color: $green;
+        }
+    }
+}

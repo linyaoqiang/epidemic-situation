@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div class="content-body">
+        <form method="post" action="/admin/vaccines/update">
+            {% csrf_token %}
+            {% if vaccines_id %}
+                <input type="hidden" name="id" value="{{ vaccines_id }}">
+            {% endif %}
+            {% for item in form %}
+                <div class="form-group">
+                    <label>{{ item.label }}</label>
+                    {{ item }}
+                    <small id="help" class="form-text text-muted">{{ item.error.0 }}</small>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">
+                {% if vaccines_id %}
+                    更新
+                {% else %}
+                    新增
+                {% endif %}
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

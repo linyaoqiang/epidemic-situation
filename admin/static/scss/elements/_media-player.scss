@@ -1,0 +1,33 @@
+/*--
+    - Media Player
+--------------------------------------*/
+.plyr {
+	border-radius: 4px;
+	box-shadow: 0 3px 10px rgba($black, 0.15);
+    & .plyr__controls {
+        // Play & Pause
+        & .plyr__control {
+            &.plyr__tab-focus, &:hover, &[aria-expand="true"], &[aria-expanded="true"] {
+                background-color: $primary;
+                box-shadow: none;
+            }
+        }
+        // Volume & Progress
+        & .plyr__volume, & .plyr__progress {
+            & input[type="range"].plyr__tab-focus::-moz-range-track, & input[type="range"]::-moz-range-track {
+                box-shadow: none;
+            }
+            & input[type="range"].plyr__tab-focus::-moz-range-progress, & input[type="range"]::-moz-range-progress {
+                background-color: $primary;
+                box-shadow: none;
+            }
+        }
+    }
+    // Overlaid Play & Pause
+    & .plyr__control--overlaid {
+        background-color: rgba($primary, 0.8);
+        &:hover {
+            background-color: $primary;
+        }
+    }
+}

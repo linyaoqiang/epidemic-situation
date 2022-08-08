@@ -1,0 +1,183 @@
+@import 'variabls';
+
+/*--
+    - Custom Column
+------------------------------------------*/
+@media #{$extraBig-device}{
+    @for $i from 1 through 12 {
+        .col-xlg-#{1 * $i} {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+            flex: 0 0 (100% * $i)/12;
+            max-width: (100% * $i)/12;
+        }
+    }
+}
+
+/*--
+    - Custom Row
+------------------------------------------*/
+@for $i from 0 through 15 {
+    .row-#{1 * $i} {
+        margin-left: -1px * $i;
+        margin-right: -1px * $i;
+        
+        & > [class*="col"] {
+            padding-left: 1px * $i;
+            padding-right: 1px * $i;
+        }
+    }
+}
+@for $i from 16 through 40 {
+    .row-#{1 * $i} {
+        margin-left: -1px * $i;
+        margin-right: -1px * $i;
+        
+        // Responsive
+        @media #{$laptop-device}{
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        @media #{$desktop-device}{
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        @media #{$tablet-device}{
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        @media #{$large-mobile}{
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        
+        & > [class*="col"] {
+            padding-left: 1px * $i;
+            padding-right: 1px * $i;
+        
+            // Responsive
+            @media #{$laptop-device}{
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            @media #{$desktop-device}{
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            @media #{$tablet-device}{
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            @media #{$large-mobile}{
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    }
+}
+
+
+/*-- 
+    - Margin & Padding
+------------------------------------------------------*/
+/*-- Margin --*/
+@for $i from 0 through 20 {
+    .mt-#{5 * $i}{margin-top: 5px *$i !important;}
+    .mb-#{5 * $i}{margin-bottom: 5px *$i !important;}
+    .ml-#{5 * $i}{margin-left: 5px *$i !important;}
+    .mr-#{5 * $i}{margin-right: 5px *$i !important;}
+    .mtn-#{5 * $i}{margin-top: -5px *$i !important;}
+    .mbn-#{5 * $i}{margin-bottom: -5px *$i !important;}
+    .mln-#{5 * $i}{margin-left: -5px *$i !important;}
+    .mrn-#{5 * $i}{margin-right: -5px *$i !important;}
+}
+@media #{$laptop-device}{
+    @for $i from 0 through 20 {
+        .mt-lg-#{5 * $i}{margin-top: 5px * $i !important;}
+        .mb-lg-#{5 * $i}{margin-bottom: 5px * $i !important;}
+        .ml-lg-#{5 * $i}{margin-left: 5px * $i !important;}
+        .mr-lg-#{5 * $i}{margin-right: 5px * $i !important;}
+        .mtn-lg-#{5 * $i}{margin-top: -5px * $i !important;}
+        .mbn-lg-#{5 * $i}{margin-bottom: -5px * $i !important;}
+        .mln-lg-#{5 * $i}{margin-left: -5px * $i !important;}
+        .mrn-lg-#{5 * $i}{margin-right: -5px * $i !important;}
+    }
+}
+@media #{$desktop-device}{
+    @for $i from 0 through 20 {
+        .mt-md-#{5 * $i}{margin-top: 5px * $i !important;}
+        .mb-md-#{5 * $i}{margin-bottom: 5px * $i !important;}
+        .ml-md-#{5 * $i}{margin-left: 5px * $i !important;}
+        .mr-md-#{5 * $i}{margin-right: 5px * $i !important;}
+        .mtn-md-#{5 * $i}{margin-top: -5px * $i !important;}
+        .mbn-md-#{5 * $i}{margin-bottom: -5px * $i !important;}
+        .mln-md-#{5 * $i}{margin-left: -5px * $i !important;}
+        .mrn-md-#{5 * $i}{margin-right: -5px * $i !important;}
+    }
+}
+@media #{$tablet-device}{
+    @for $i from 0 through 20 {
+        .mt-sm-#{5 * $i}{margin-top: 5px * $i !important;}
+        .mb-sm-#{5 * $i}{margin-bottom: 5px * $i !important;}
+        .ml-sm-#{5 * $i}{margin-left: 5px * $i !important;}
+        .mr-sm-#{5 * $i}{margin-right: 5px * $i !important;}
+        .mtn-sm-#{5 * $i}{margin-top: -5px * $i !important;}
+        .mbn-sm-#{5 * $i}{margin-bottom: -5px * $i !important;}
+        .mln-sm-#{5 * $i}{margin-left: -5px * $i !important;}
+        .mrn-sm-#{5 * $i}{margin-right: -5px * $i !important;}
+    }
+}
+@media #{$large-mobile}{
+    @for $i from 0 through 20 {
+        .mt-xs-#{5 * $i}{margin-top: 5px * $i !important;}
+        .mb-xs-#{5 * $i}{margin-bottom: 5px * $i !important;}
+        .ml-xs-#{5 * $i}{margin-left: 5px * $i !important;}
+        .mr-xs-#{5 * $i}{margin-right: 5px * $i !important;}
+        .mtn-xs-#{5 * $i}{margin-top: -5px * $i !important;}
+        .mbn-xs-#{5 * $i}{margin-bottom: -5px * $i !important;}
+        .mln-xs-#{5 * $i}{margin-left: -5px * $i !important;}
+        .mrn-xs-#{5 * $i}{margin-right: -5px * $i !important;}
+    }
+}
+
+/*-- Padding --*/
+@for $i from 0 through 20 {
+    .pt-#{5 * $i}{padding-top: 5px *$i !important;}
+    .pb-#{5 * $i}{padding-bottom: 5px *$i !important;}
+    .pl-#{5 * $i}{padding-left: 5px *$i !important;}
+    .pr-#{5 * $i}{padding-right: 5px *$i !important;}
+}
+@media #{$laptop-device}{
+    @for $i from 0 through 20 {
+        .pt-lg-#{5 * $i}{padding-top: 5px * $i !important;}
+        .pb-lg-#{5 * $i}{padding-bottom: 5px * $i !important;}
+        .pl-lg-#{5 * $i}{padding-left: 5px * $i !important;}
+        .pr-lg-#{5 * $i}{padding-right: 5px * $i !important;}
+    }
+}
+@media #{$desktop-device}{
+    @for $i from 0 through 20 {
+        .pt-md-#{5 * $i}{padding-top: 5px * $i !important;}
+        .pb-md-#{5 * $i}{padding-bottom: 5px * $i !important;}
+        .pl-md-#{5 * $i}{padding-left: 5px * $i !important;}
+        .pr-md-#{5 * $i}{padding-right: 5px * $i !important;}
+    }
+}
+@media #{$tablet-device}{
+    @for $i from 0 through 20 {
+        .pt-sm-#{5 * $i}{padding-top: 5px * $i !important;}
+        .pb-sm-#{5 * $i}{padding-bottom: 5px * $i !important;}
+        .pl-sm-#{5 * $i}{padding-left: 5px * $i !important;}
+        .pr-sm-#{5 * $i}{padding-right: 5px * $i !important;}
+    }
+}
+@media #{$large-mobile}{
+    @for $i from 0 through 20 {
+        .pt-xs-#{5 * $i}{padding-top: 5px * $i !important;}
+        .pb-xs-#{5 * $i}{padding-bottom: 5px * $i !important;}
+        .pl-xs-#{5 * $i}{padding-left: 5px * $i !important;}
+        .pr-xs-#{5 * $i}{padding-right: 5px * $i !important;}
+    }
+}

@@ -1,0 +1,180 @@
+{% extends 'user_template/index.html' %}
+{% load static %}
+{% block content %}
+    <div class="layui-container">
+
+
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">风险地区</h2>
+                <div class="layui-colla-content layui-show">
+                    通过了解各个省份与城市的风险地区，做出疫情应对策略！
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form" style="margin-top: 20px;">
+            <div class="layui-form-item layui-inline">
+                <label for="province-select" class="layui-form-label">省份(自治区)</label>
+                <div class="layui-input-block">
+                    <select id="province-select" lay-filter="province">
+                        <option value="">全部</option>
+                        {% for item in provinces %}
+                            {% if province_id != item.id %}
+                                <option value="{{ item.id }}">{{ item.name }}</option>
+                            {% else %}
+                                <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item layui-inline">
+                <label for="city-select" class="layui-form-label">城市</label>
+                <div class="layui-input-block">
+                    <select id="city-select" lay-filter="city">
+                        <option value="">无</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-inline">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn layui-btn-danger" id="btn-clear" >清除条件</button>
+                </div>
+            </div>
+
+        </div>
+
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>省份名称</th>
+                <th>城市名称</th>
+                <th>风险区域</th>
+                <th>风险等级</th>
+                <th>风险描述</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in objects %}
+                <tr>
+                    <td>{{ item.province.name }}</td>
+                    <td>{{ item.city.name }}</td>
+                    <td>
+                        {% for area_name in item.areas_object %}
+                            {{ area_name }} &nbsp;
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ item.get_level_display }}
+                    </td>
+                    <td>{{ item.desc }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="page">
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+                , count: {{ paginator.count }} //数据总数，从服务端得到
+                , limits: [2, 4, 6, 8, 10]
+                , layout: ['prev', 'page', 'next', 'limit']
+                , groups: 10
+                , limit: {{ page_size }}
+                , curr: {{ page_number }}
+                , jump: function (obj, first) {
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        var api = '/es?page='+obj.curr+'&size=' + obj.limit
+                        api += '&p_id={{ province_id }}&c_id = {{ city_id}}'
+                        window.location.href = api
+                    }
+                }
+            });
+        });
+
+        layui.use(['form', 'jquery'], function(){
+            var form = layui.form;
+            window.$ = layui.jquery;
+            changeProvince(form)
+            //提交
+            form.on('select(province)', function (data) {
+
+                console.log(data);
+                changeProvince(form);
+
+                return false;
+            });
+
+            form.on('select(city)', function (data) {
+                changeCity();
+                return false;
+            });
+
+            $('#btn-clear').click(function (e) {
+                window.location.href = '/es'
+            })
+
+        });
+
+
+        function changeProvince(form) {
+
+            var province_id = $('#province-select').val()
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            $.get('/admin/location/' + province_id, {}, function (data) {
+
+                var content = '<option value="">全部</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ city_id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    } else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#city-select').html(content);
+                form.render()
+            });
+        }
+
+        function changeCity() {
+            var province_id = $('#province-select').val();
+            var city_id = $('#city-select').val();
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            if (city_id === '' || city_id === undefined) {
+                return;
+            }
+            window.location.href = "/es?p_id=" + province_id + "&c_id=" + city_id + "&page=1&size={{ page_size }}";
+        }
+
+
+
+    </script>
+{% endblock %}

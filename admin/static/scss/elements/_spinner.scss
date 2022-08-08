@@ -1,0 +1,13 @@
+/*--
+    - Spinner
+--------------------------------------*/
+.spinner-border, .spinner-grow {
+    &.spinner-lg {
+        width: 46px;
+        height: 46px;
+    }
+    &.spinner-sm {
+        width: 18px;
+        height: 18px;
+    }
+}

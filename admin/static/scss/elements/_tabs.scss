@@ -1,0 +1,36 @@
+/*--
+    - Tab
+--------------------------------------*/
+.nav-tabs {
+    border: none;
+    padding: 0 0.5px;
+    & .nav-item {
+        margin: 0 -0.5px;
+        & .nav-link {
+            background-color: transparent;
+            border-radius: 0;
+            border: 1px solid #dee2e6;
+            &.active {
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+            }
+        }
+    }
+    &.flex-column {
+        padding: 0.5px 0;
+        & .nav-item {
+            margin: -0.5px 0;
+        }
+    }
+}
+.nav-pills {
+    padding: 0;
+    & .nav-item {
+        & .nav-link {
+            &.active {
+                background-color: $primary;
+            }
+        }
+    }
+}

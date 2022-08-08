@@ -1,0 +1,474 @@
+/*----------------------------------------*/
+/*  06. Tippy CSS
+/*----------------------------------------*/
+.tippy-tooltip {
+    background-color: $heading-color;
+    box-shadow: 0 5px 15px rgba($black, 0.1);
+    padding: 10px;
+    & .tippy-backdrop {
+        background-color: $heading-color;
+    }
+    // Theme
+    &.dark-theme {
+        background-color: $heading-color;
+        & .tippy-backdrop {
+            background-color: $heading-color;
+        }
+    }
+    &.light-theme {
+        background-color: $white;
+        & .tippy-backdrop {
+            background-color: $white;
+        }
+        & .tippy-content {
+            color: $heading-color;
+        }
+    }
+    &.primary-theme {
+        background-color: $primary;
+        box-shadow: 0 5px 15px rgba($primary, 0.1);
+        & .tippy-backdrop {
+            background-color: $primary;
+        }
+    }
+    &.secondary-theme {
+        background-color: $secondary;
+        box-shadow: 0 5px 15px rgba($secondary, 0.1);
+        & .tippy-backdrop {
+            background-color: $secondary;
+        }
+    }
+    &.success-theme {
+        background-color: $success;
+        box-shadow: 0 5px 15px rgba($success, 0.1);
+        & .tippy-backdrop {
+            background-color: $success;
+        }
+    }
+    &.danger-theme {
+        background-color: $danger;
+        box-shadow: 0 5px 15px rgba($danger, 0.1);
+        & .tippy-backdrop {
+            background-color: $danger;
+        }
+    }
+    &.warning-theme {
+        background-color: $warning;
+        box-shadow: 0 5px 15px rgba($warning, 0.1);
+        & .tippy-backdrop {
+            background-color: $warning;
+        }
+    }
+    &.info-theme {
+        background-color: $info;
+        box-shadow: 0 5px 15px rgba($info, 0.1);
+        & .tippy-backdrop {
+            background-color: $info;
+        }
+    }
+    
+    & .tippy-content {
+        color: $white;
+        font-size: 12px;
+    }
+}
+/*Placement Top*/
+.tippy-popper[x-placement^="top"] {
+    & .tippy-tooltip {
+        & .tippy-arrow {
+            border-top-color: $heading-color;
+        }
+        & .tippy-roundarrow {
+            & svg {
+                & path {
+                    fill: $heading-color;
+                }
+            }
+        }
+        // Theme
+        &.light-theme {
+            & .tippy-arrow {
+                border-top-color: $white;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $white;
+                    }
+                }
+            }
+        }
+        &.primary-theme {
+            & .tippy-arrow {
+                border-top-color: $primary;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $primary;
+                    }
+                }
+            }
+        }
+        &.secondary-theme {
+            & .tippy-arrow {
+                border-top-color: $secondary;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $secondary;
+                    }
+                }
+            }
+        }
+        &.success-theme {
+            & .tippy-arrow {
+                border-top-color: $success;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $success;
+                    }
+                }
+            }
+        }
+        &.danger-theme {
+            & .tippy-arrow {
+                border-top-color: $danger;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $danger;
+                    }
+                }
+            }
+        }
+        &.warning-theme {
+            & .tippy-arrow {
+                border-top-color: $warning;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $warning;
+                    }
+                }
+            }
+        }
+        &.info-theme {
+            & .tippy-arrow {
+                border-top-color: $info;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $info;
+                    }
+                }
+            }
+        }
+    }
+}
+/*Placement Bottom*/
+.tippy-popper[x-placement^="bottom"] {
+    & .tippy-tooltip {
+        & .tippy-arrow {
+            border-bottom-color: $heading-color;
+        }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $heading-color;
+                    }
+                }
+            }
+        // Theme
+        &.light-theme {
+            & .tippy-arrow {
+                border-bottom-color: $white;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $white;
+                    }
+                }
+            }
+        }
+        &.primary-theme {
+            & .tippy-arrow {
+                border-bottom-color: $primary;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $primary;
+                    }
+                }
+            }
+        }
+        &.secondary-theme {
+            & .tippy-arrow {
+                border-bottom-color: $secondary;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $secondary;
+                    }
+                }
+            }
+        }
+        &.success-theme {
+            & .tippy-arrow {
+                border-bottom-color: $success;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $success;
+                    }
+                }
+            }
+        }
+        &.danger-theme {
+            & .tippy-arrow {
+                border-bottom-color: $danger;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $danger;
+                    }
+                }
+            }
+        }
+        &.warning-theme {
+            & .tippy-arrow {
+                border-bottom-color: $warning;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $warning;
+                    }
+                }
+            }
+        }
+        &.info-theme {
+            & .tippy-arrow {
+                border-bottom-color: $info;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $info;
+                    }
+                }
+            }
+        }
+    }
+}
+/*Placement Left*/
+.tippy-popper[x-placement^="left"] {
+    & .tippy-tooltip {
+        & .tippy-arrow {
+            border-left-color: $heading-color;
+        }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $heading-color;
+                    }
+                }
+            }
+        // Theme
+        &.light-theme {
+            & .tippy-arrow {
+                border-left-color: $white;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $white;
+                    }
+                }
+            }
+        }
+        &.primary-theme {
+            & .tippy-arrow {
+                border-left-color: $primary;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $primary;
+                    }
+                }
+            }
+        }
+        &.secondary-theme {
+            & .tippy-arrow {
+                border-left-color: $secondary;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $secondary;
+                    }
+                }
+            }
+        }
+        &.success-theme {
+            & .tippy-arrow {
+                border-left-color: $success;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $success;
+                    }
+                }
+            }
+        }
+        &.danger-theme {
+            & .tippy-arrow {
+                border-left-color: $danger;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $danger;
+                    }
+                }
+            }
+        }
+        &.warning-theme {
+            & .tippy-arrow {
+                border-left-color: $warning;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $warning;
+                    }
+                }
+            }
+        }
+        &.info-theme {
+            & .tippy-arrow {
+                border-left-color: $info;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $info;
+                    }
+                }
+            }
+        }
+    }
+}
+/*Placement Right*/
+.tippy-popper[x-placement^="right"] {
+    & .tippy-tooltip {
+        & .tippy-arrow {
+            border-right-color: $heading-color;
+        }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $heading-color;
+                    }
+                }
+            }
+        // Theme
+        &.light-theme {
+            & .tippy-arrow {
+                border-right-color: $white;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $white;
+                    }
+                }
+            }
+        }
+        &.primary-theme {
+            & .tippy-arrow {
+                border-right-color: $primary;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $primary;
+                    }
+                }
+            }
+        }
+        &.secondary-theme {
+            & .tippy-arrow {
+                border-right-color: $secondary;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $secondary;
+                    }
+                }
+            }
+        }
+        &.success-theme {
+            & .tippy-arrow {
+                border-right-color: $success;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $success;
+                    }
+                }
+            }
+        }
+        &.danger-theme {
+            & .tippy-arrow {
+                border-right-color: $danger;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $danger;
+                    }
+                }
+            }
+        }
+        &.warning-theme {
+            & .tippy-arrow {
+                border-right-color: $warning;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $warning;
+                    }
+                }
+            }
+        }
+        &.info-theme {
+            & .tippy-arrow {
+                border-right-color: $info;
+            }
+            & .tippy-roundarrow {
+                & svg {
+                    & path {
+                        fill: $info;
+                    }
+                }
+            }
+        }
+    }
+}

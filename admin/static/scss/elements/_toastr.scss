@@ -1,0 +1,137 @@
+/*--
+    - Toasrt
+--------------------------------------*/
+#toastrOptions {
+    width: 100%;
+    white-space: pre-wrap;
+    padding: 30px;
+    border: 1px solid #eeeeee;
+    margin: 0;
+}
+#toast-container {
+    & .toast {
+        opacity: 0.9;
+        border-radius: 4px;
+        box-shadow: 0 5px 10px rgba($black, 0.15);
+        margin-bottom: 10px;
+        transition: box-shadow 0.3s ease 0s;
+        max-width: none;
+        background-position: 15px 16px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &:hover {
+            box-shadow: 0 10px 15px rgba($black, 0.15);
+        }
+        & > div {
+            margin-bottom: 10px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        & .toast-progress {
+            margin: 0;
+            background-color: rgba($black, 0.3);
+        }
+        & .toast-close-button {
+            display: block;
+            font-weight: 300;
+            line-height: 18px;
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            padding-bottom: 4px;
+            &:hover {
+                opacity: 1;
+                color: $white;
+                transform: rotate(360deg);
+            }
+        }
+        & .toast-title {
+            font-size: 16px;
+        }
+        & .toast-message {
+            & > div {
+                margin-bottom: 10px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                & > * {
+                    margin-bottom: 10px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            & input {
+                margin-bottom: 10px;
+                @extend .form-control;
+                border-color: $white;
+                color: $white;
+                max-width: 350px;
+            }
+            & a {
+                margin-bottom: 10px;
+                position: relative;
+                &::before {
+                    position: absolute;
+                    left: auto;
+                    right: 0;
+                    bottom: 3px;
+                    height: 1px;
+                    width: 0;
+                    content: "";
+                    background-color: $white;
+                    transition: all 0.3s ease 0s;
+                }
+                &:hover {
+                    color: $white;
+                    &::before {
+                        width: 100%;
+                        left: 0;
+                    }
+                }
+            }
+            & .btn {
+                @extend .button;
+                @extend .button-sm;
+                
+                margin: 0 5px 5px 0 !important;
+                &:last-child {
+                    margin-right: 0 !important;
+                }
+                
+                &.btn-primary {
+                    @extend .button-primary;
+                }
+                &.btn-secondary {
+                    @extend .button-secondary;
+                }
+                &.btn-success {
+                    @extend .button-success;
+                }
+                &.btn-danger {
+                    @extend .button-danger;
+                }
+                &.btn-warning {
+                    @extend .button-warning;
+                }
+                &.btn-info {
+                    @extend .button-info;
+                }
+            }
+        }
+        &.toast-success {
+            background-color: $success;
+        }
+        &.toast-info {
+            background-color: $info;
+        }
+        &.toast-warning {
+            background-color: $warning;
+        }
+        &.toast-error {
+            background-color: $danger;
+        }
+    }
+}

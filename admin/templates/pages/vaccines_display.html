@@ -1,0 +1,147 @@
+{% extends 'index.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static '' %}">
+<style>
+    option {
+        font-size: 48px;
+    }
+
+    .content-body > div, nav, button {
+        margin-top: 20px;
+    }
+</style>
+{% block content %}
+    <!-- Content Body Start -->
+    <div class="content-body">
+        <!-- Page Headings Start -->
+        <div class="row justify-content-between align-items-center mb-10">
+
+            <!-- Page Heading Start -->
+            <div class="col-12 col-lg-auto mb-20">
+                <div class="page-heading">
+                    <h3 class="title">表格 <span>/ 疫苗信息显示</span></h3>
+                </div>
+            </div><!-- Page Heading End -->
+
+        </div><!-- Page Headings End -->
+
+        <div class="form-row" style="margin-top: 20px;">
+            <div class="form-group col-md-4">
+                <label for="company-select">疫苗公司</label>
+                <select id="company-select" class="form-control">
+                    <option value="">全部</option>
+                    {% for item in vaccines_companies %}
+                        {% if company_id != item.id %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% else %}
+                            <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="location-select">位置</label>
+                <select id="location-select" class="form-control">
+                    <option value="">全部</option>
+                    {% for item in vaccines_locations %}
+                        {% if location_id != item.id %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% else %}
+                            <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+
+        <button class="btn-default btn-primary" style="margin-top: 20px;"><a href="/admin/vaccines/add">新增疫苗信息</a></button>
+
+        <table class="table table-bordered" style="margin-top: 20px;">
+            <thead>
+            <tr>
+                <td>疫苗公司</td>
+                <td>接种单位</td>
+                <td>针次</td>
+                <td>数量</td>
+                <td>发布时间</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in vaccines_list %}
+                <tr>
+                    <td>{{ item.company.name }}</td>
+                    <td>{{ item.location.name }}</td>
+                    <td>第{{ item.needles }}针</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.create_time|date:'Y年m月d日 H:m:s' }}</td>
+                    <td>
+                        <button class="btn-default btn-outline-success"><a href="/admin/vaccines/edit/{{ item.id }}">编辑</a></button>
+                        <button class="btn-default btn-danger"><a href="/admin/vaccines/delete/{{ item.id }}">删除</a></button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <nav>
+
+            <ul class="pagination">
+                {% if page_number > 1 %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/vaccines/display?c_id={{ company_id }}&l_id={{ location_id }}&page={{ page_number|add:-1 }}&size=={{ paginator.per_page }}">上一页</a>
+                    </li>
+                {% endif %}
+
+                {% for index in paginator.page_range %}
+                    {% if page_number == index %}
+                        <li class="page-item active"><a class="page-link" href="/admin/vaccines/display?c_id={{ company_id }}&l_id={{ location_id }}&page={{ index }}&size={{ page_size }}">{{ index }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="/admin/vaccines/display?c_id={{ company_id }}&l_id={{ location_id }}&page={{ index }}&size={{ page_size }}">{{ index }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_number < paginator.num_pages %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/vaccines/display?c_id={{ company_id }}&l_id={{ location_id }}&page={{ page_number|add:1 }}&size=={{ paginator.per_page }}">下一页</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </nav>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+
+
+    <!--Plugins JS-->
+    <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.min.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.active.js' %}"></script>
+
+    <script type="text/javascript">
+        $('#company-select').change(function () {
+            var value = $(this).val();
+            var api = '/admin/vaccines/display?c_id='+value+'&l_id={{ location_id }}';
+            window.location.href = api;
+        });
+
+        $('#location-select').change(function () {
+            var value = $(this).val()
+            var api = '/admin/vaccines/display?c_id={{ company_id }}&l_id='+value;
+            window.location.href = api;
+        })
+    </script>
+
+{% endblock %}

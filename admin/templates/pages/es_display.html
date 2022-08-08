@@ -1,0 +1,189 @@
+{% extends 'index.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static '' %}">
+<style>
+    option {
+        font-size: 48px;
+    }
+
+    .content-body > div, nav, button {
+        margin-top: 20px;
+    }
+</style>
+{% block content %}
+    <!-- Content Body Start -->
+    <div class="content-body">
+        <!-- Page Headings Start -->
+        <div class="row justify-content-between align-items-center mb-10">
+
+            <!-- Page Heading Start -->
+            <div class="col-12 col-lg-auto mb-20">
+                <div class="page-heading">
+                    <h3 class="title">表格 <span>/ 风险地区显示</span></h3>
+                </div>
+            </div><!-- Page Heading End -->
+
+        </div><!-- Page Headings End -->
+
+
+        <div class="form-row" style="margin-top: 20px;">
+            <div class="form-group col-md-4">
+                <label for="province-select">省份(自治区)</label>
+                <select id="province-select" class="form-control">
+                    <option value="">全部</option>
+                    {% for item in provinces %}
+                        {% if province_id != item.id %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% else %}
+                            <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="city-select">城市</label>
+                <select id="city-select" class="form-control">
+                    <option value="">无</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn-default btn-primary" style="margin-top: 20px;"><a href="/admin/es/add">新增风险地区</a></button>
+
+        <table class="table table-bordered" style="margin-top: 20px;">
+            <thead>
+            <tr>
+                <td>省份名称</td>
+                <td>城市名称</td>
+                <td>风险区域</td>
+                <td>风险等级</td>
+                <td>风险描述</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in objects %}
+                <tr>
+                    <td>{{ item.province.name }}</td>
+                    <td>{{ item.city.name }}</td>
+                    <td>
+                        {% for area_name in item.areas_object %}
+                            {{ area_name }} &nbsp;
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if item.level == 1 %}
+                            中风险地区
+                        {% else %}
+                            高风险地区
+                        {% endif %}
+                    </td>
+                    <td>{{ item.desc }}</td>
+                    <td>
+                        <button class="btn-default btn-outline-success"><a href="/admin/es/edit/{{ item.id }}">编辑</a>
+                        </button>
+                        <button class="btn-default btn-danger"><a href="/admin/es/delete/{{ item.id }}">删除</a></button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation example">
+
+            <ul class="pagination">
+                {% if page_number > 1 %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/es/display?p_id={{ province_id }}&c_id={{ city_id }}&page={{ page_number|add:-1 }}&size=={{ paginator.per_page }}">上一页</a>
+                    </li>
+                {% endif %}
+
+                {% for index in paginator.page_range %}
+                    {% if page_number == index %}
+                        <li class="page-item active"><a class="page-link"
+                                                        href="/admin/es/display?p_id={{ province_id }}&c_id={{ city_id }}&page={{ index }}&size={{ page_size }}">{{ index }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="/admin/es/display?p_id={{ province_id }}&c_id={{ city_id }}&page={{ index }}&size={{ page_size }}">{{ index }}</a>
+                        </li>
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if page_number < paginator.num_pages %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/es/display?p_id={{ province_id }}&c_id={{ city_id }}&page={{ page_number|add:1 }}&size=={{ paginator.per_page }}">下一页</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </nav>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+
+
+    <!--Plugins JS-->
+    <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.min.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.active.js' %}"></script>
+
+    <script type="text/javascript">
+
+        function changeProvince() {
+            debugger
+            var province_id = $('#province-select').val()
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            $.get('/admin/location/' + province_id, {}, function (data) {
+                var content = '<option value="">全部</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ city_id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    } else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#city-select').html(content);
+            });
+        }
+
+        function changeCity() {
+            var province_id = $('#province-select').val();
+            var city_id = $('#city-select').val();
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            if (city_id === '' || city_id === undefined) {
+                return;
+            }
+            window.location.href = "/admin/es/display?p_id=" + province_id + "&c_id=" + city_id + "&page=1&size={{ page_size }}";
+        }
+
+
+
+
+
+    </script>
+
+{% endblock %}

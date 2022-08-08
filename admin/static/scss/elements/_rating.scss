@@ -1,0 +1,11 @@
+/*--
+    - Ratting
+--------------------------------------*/
+.rating {
+    line-height: 1;
+}
+.rating-font-star {
+    & i.zmdi-star, i.zmdi-star-half {
+        color: #FFBD12;
+    }
+}

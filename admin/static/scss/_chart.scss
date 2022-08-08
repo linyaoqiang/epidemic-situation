@@ -1,0 +1,94 @@
+/*----------------------------------------*/
+/*  13. Chart CSS
+/*----------------------------------------*/
+
+/*Chart Legends*/
+.chart-legends-1 {
+    justify-content: space-between;
+    margin-bottom: 15px;
+    & .chart-legend-1 {
+        margin-bottom: 20px;
+        & .title {
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        & .value {
+            line-height: 1;
+            font-weight: 600;
+            margin: 0;
+        }
+    }
+}
+
+/*Revenue Statistics Charts*/
+.chartjs-revenue-statistics-chart, .chartjs-revenue-statistics-chart-2 {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    // Responsive
+    @media #{$laptop-device, $desktop-device, $tablet-device, $large-mobile} {
+        height: 300px
+    }
+}
+/*Market Trends Chart*/
+.chartjs-market-trends-chart {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    // Responsive
+    @media #{$laptop-device, $desktop-device, $tablet-device, $large-mobile} {
+        height: 350px
+    }
+}
+/*Market Trends Chart 2 , Analytics Chart & Graph Chart */
+.chartjs-market-trends-chart-2, .chartjs-analytics-chart, .chartjs-graph-chart {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    // Responsive
+    @media #{$laptop-device, $desktop-device, $tablet-device, $large-mobile} {
+        height: 350px
+    }
+}
+
+/*Echart Example*/
+.example-echarts {
+    width: 100%;
+    height: 300px;
+}
+
+/*ChartJs Example*/
+.example-chartjs {
+    width: 100%;
+    height: 250px;
+}
+
+/*Morris Example*/
+.example-morris {
+    width: 100%;
+    height: 250px;
+    & > svg {
+        width: 100%;
+    }
+}
+
+/*Sparkline Chart*/
+.sparkline-chart {
+    display: block;
+    width: 100%;
+    text-align: center;
+    & canvas {
+        height: auto !important;
+        max-width: 100% !important;
+    }
+}
+.jqstooltip {
+    height: auto !important;
+    width: auto !important;
+}
+
+/*Google Chart*/
+.example-gchart {
+    width: 100%;
+    height: 300px;
+}

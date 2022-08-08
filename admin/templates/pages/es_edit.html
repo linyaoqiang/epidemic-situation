@@ -1,0 +1,131 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div class="content-body">
+        <form method="post" action="/admin/es/update">
+            {% csrf_token %}
+            {% if id %}
+                <input type="hidden" name="id" value="{{ id }}">
+            {% endif %}
+            {% for item in form %}
+                <div class="form-group">
+                    <label>{{ item.label }}</label>
+                    {{ item }}
+                    <small id="help" class="form-text text-muted">{{ item.error.0 }}</small>
+                </div>
+            {% endfor %}
+
+            <div class="form-group" id="areas">
+                <label>风险区域</label>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                {% if id %}
+                    更新
+                {% else %}
+                    新增
+                {% endif %}
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+
+        function changeProvince() {
+            var province_id = $('#id_province').val()
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            $.get('/admin/location/' + province_id, {}, function (data) {
+                var content = '<option value="">-------</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ city_id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    } else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#id_city').html(content);
+            });
+        }
+
+        function changeCity() {
+            var province_id = $('#id_province').val();
+            var city_id = $('#id_city').val();
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            if (city_id === '' || city_id === undefined) {
+                return;
+            }
+            $.get('/admin/location/' + province_id + '/' + city_id, {}, function (data) {
+                var content = '<label>风险区域</label>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    content +=
+                        '<div class="form-check">'+
+                    '<input class="form-check-input" type="checkbox" name="areas" value="' + obj.pk + '">' +
+                    '<label class="form-check-label inline">' + obj.fields.name + '</label>' +
+                    '</div>';
+
+                }
+                $('#areas').html(content);
+
+                handleAreas();
+
+            });
+
+        }
+
+        function handleAreas() {
+            var $checkboxs = $('input[type=checkbox]');
+            console.log($checkboxs)
+            $.each($checkboxs, function (index, object) {
+                value = $(object).val();
+                {% for item in areas %}
+                    if (value == '{{ item }}') {
+                        $(object).attr('checked', true);
+                    }
+                    console.log({{ item }});
+                {% endfor %}
+                console.log(value);
+
+            })
+        }
+
+
+
+        $('#id_province').change(function (e) {
+            changeProvince();
+        })
+
+        $('#id_city').change(function (e) {
+            changeCity();
+        })
+
+
+        var value = $('#id_province').val()
+        console.log(value)
+        if ($.isNumeric(value)) {
+            changeProvince();
+        }
+
+
+        value = $('#id_city').val();
+        console.log(value)
+        if ($.isNumeric(value)) {
+            changeCity();
+        }
+
+    </script>
+{% endblock %}

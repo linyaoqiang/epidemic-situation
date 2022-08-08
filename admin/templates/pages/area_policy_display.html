@@ -1,0 +1,247 @@
+{% extends 'index.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static '' %}">
+<style>
+    option {
+        font-size: 48px;
+    }
+
+    .content-body > div, nav, button {
+        margin-top: 20px;
+    }
+</style>
+{% block content %}
+    <!-- Content Body Start -->
+    <div class="content-body">
+        <!-- Page Headings Start -->
+        <div class="row justify-content-between align-items-center mb-10">
+
+            <!-- Page Heading Start -->
+            <div class="col-12 col-lg-auto mb-20">
+                <div class="page-heading">
+                    <h3 class="title">表格 <span>/ 地区政策显示</span></h3>
+                </div>
+            </div><!-- Page Heading End -->
+
+        </div><!-- Page Headings End -->
+
+        <div class="form-row" style="margin-top: 20px;">
+            <div class="form-group col-md-3">
+                <label for="province-select">省份(自治区)</label>
+                <select id="province-select" class="form-control">
+                    <option value="">-------</option>
+                    {% for item in provinces %}
+                        {% if province.id != item.id %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% else %}
+                            <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="city-select">城市</label>
+                <select id="city-select" class="form-control">
+                    <option value="">无</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="area-select">城市</label>
+                <select id="area-select" class="form-control">
+                    <option value="">无</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label>&nbsp;</label>
+                <button class="btn-outline-primary form-control inline"><a href="/admin/area_policy/display">清除条件</a></button>
+            </div>
+        </div>
+
+
+        <table class="table table-bordered" style="margin-top: 20px;">
+            <thead>
+            <tr>
+                <td>省份(自治区)</td>
+                <td>城市</td>
+                <td>地区</td>
+                <td>防疫政策</td>
+                <td>出行政策</td>
+                <td>心理热线</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in area_policies %}
+                <tr>
+                    <td>{{ item.area.city.province.name }}</td>
+                    <td>{{ item.area.city.name }}</td>
+                    <td>{{ item.area.name }}</td>
+                    <td>{{ item.epidemic_prevention_policy }}</td>
+                    <td>{{ item.travel_policy }}</td>
+                    <td>{{ item.psychological_hotline }}</td>
+                    <td>
+                        <button class="btn-default btn-outline-success"><a href="/admin/area_policy/edit/{{ item.id }}">编辑</a></button>
+                        <button class="btn-default btn-outline-success"><a href="/admin/area_policy/outpatient_department/add?a_id={{ item.area.id }}">新增门诊</a></button>
+                        <button class="btn-default btn-outline-success">
+                            <a href="/admin/area_policy/outpatient_department/display?a_id={{ item.area.id }}">门诊管理</a>
+                        </button>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <nav>
+
+            <ul class="pagination">
+                {% if page_number > 1 %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/area_policy/display?a_id={{ area_id }}&page={{ page_number|add:-1 }}&size=={{ paginator.per_page }}">上一页</a>
+                    </li>
+                {% endif %}
+
+                {% for index in paginator.pages %}
+                    {% if page_number == index %}
+                        <li class="page-item active"><a class="page-link"
+                                                        href="/admin/area_policy/display?a_id={{ area_id }}&page={{ index }}&size=={{ paginator.per_page }}">{{ index }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="/admin/area_policy/display?a_id={{ area_id }}&page={{ index }}&size=={{ paginator.per_page }}">{{ index }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if paginator.has_more %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/area_policy/display?a_id={{ area_id }}&page={{ paginator.num_pages }}&size=={{ paginator.per_page }}">...</a>
+                    </li>
+                {% endif %}
+                {% if page_number < paginator.num_pages %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/area_policy/display?a_id={{ area_id }}&page={{ page_number|add:1 }}&size=={{ paginator.per_page }}">下一页</a>
+                    </li>
+                {% endif %}
+
+
+                <li class="page-item"><span class="page-link">共{{ paginator.num_pages }}页</span></li>
+
+
+            </ul>
+
+        </nav>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+
+
+    <!--Plugins JS-->
+    <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.min.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.active.js' %}"></script>
+
+    <script type="text/javascript">
+        function changeProvince() {
+            var province_id = $('#province-select').val()
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            $.get('/admin/location/' + province_id, {}, function (data) {
+                var content = '<option value="">-------</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ city.id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    } else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#city-select').html(content);
+            });
+        }
+
+        function changeCity() {
+            var province_id = $('#province-select').val();
+            var city_id = $('#city-select').val();
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+
+            if (city_id === '' || city_id === undefined) {
+                return;
+            }
+
+            $.get('/admin/location/' + province_id + '/' + city_id, {}, function (data) {
+                var content = '<option>------</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ area.id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    } else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#area-select').html(content);
+            });
+        }
+
+        function changeArea() {
+            var province_id = $('#province-select').val();
+            var city_id = $('#city-select').val();
+            var area_id = $('#area-select').val()
+
+            if (province_id === '' || province_id === undefined) {
+                return;
+            }
+            if (city_id === '' || city_id === undefined) {
+                return;
+            }
+            if (area_id === '' || area_id === undefined) {
+                return;
+            }
+
+            window.location.href = '/admin/area_policy/display?a_id=' + area_id
+
+        }
+
+        $('#province-select').change(function (e) {
+            changeProvince();
+        });
+
+
+        $('#city-select').change(function (e) {
+            changeCity();
+        });
+
+
+        $('#area-select').change(function (e) {
+            changeArea();
+        });
+
+        {% if province.id != '' %}
+            changeProvince();
+        {% endif %}
+
+        {% if city.id != '' %}
+            changeCity();
+        {% endif %}
+    </script>
+
+{% endblock %}

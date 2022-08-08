@@ -1,0 +1,351 @@
+/*--
+    - Range Slider
+--------------------------------------*/
+.irs {
+    // Round
+    &.irs--round {
+        & .irs {
+            & .irs-line {
+                height: 8px;
+                border-radius: 50px;
+            }
+            & .irs-min, & .irs-max, & .irs-from, & .irs-to, & .irs-single {
+                font-size: 12px;
+                padding: 6px 5px 4px;
+            }
+            & .irs-min {}
+            & .irs-max {}
+            & .irs-from, & .irs-to, & .irs-single {
+                background-color: $primary;
+                &::before {
+                    border-top-color: $primary;
+                }
+            }
+        }
+        & .irs-grid {
+            & .irs-grid-pol {}
+        }
+        & .irs-bar {
+            height: 8px;
+            background-color: $primary;
+            border-radius: 50px;
+            &.irs-bar--single {}
+        }
+        & .irs-shadow {
+            &.shadow-single {}
+        }
+        & .irs-handle {
+            border: 3px solid $white;
+            background-color: $primary;
+            box-shadow: none;
+            top: 27px;
+            &.single {}
+        }
+    }
+    // Flat
+    &.irs--flat {
+        & .irs {
+            & .irs-line {
+                height: 8px;
+                border-radius: 50px;
+            }
+            & .irs-min {}
+            & .irs-max {}
+            & .irs-from, & .irs-to, & .irs-single {
+                background-color: $primary;
+                &::before {
+                    border-top-color: $primary;
+                }
+            }
+        }
+        & .irs-grid {
+            & .irs-grid-pol {}
+        }
+        & .irs-bar {
+            height: 8px;
+            background-color: $primary;
+            border-radius: 0;
+            &.irs-bar--single {}
+        }
+        & .irs-shadow {
+            &.shadow-single {}
+        }
+        & .irs-handle {
+            top: 20px;
+            &.single {}
+            & > i {
+                &:first-child {
+                    background-color: darken($primary, 5);
+                }
+            }
+        }
+    }
+    // Square
+    &.irs--square {
+        & .irs {
+            & .irs-line {
+                height: 8px;
+                border-radius: 0;
+            }
+            & .irs-min, & .irs-max, & .irs-from, & .irs-to, & .irs-single {
+                font-size: 12px;
+                padding: 5px 5px 3px;
+            }
+            & .irs-min {}
+            & .irs-max {}
+            & .irs-from, & .irs-to, & .irs-single {
+                background-color: $primary;
+            }
+        }
+        & .irs-grid {
+            & .irs-grid-pol {}
+        }
+        & .irs-bar {
+            height: 8px;
+            background-color: $primary;
+            border-radius: 0;
+            &.irs-bar--single {}
+        }
+        & .irs-shadow {
+            &.shadow-single {}
+        }
+        & .irs-handle {
+            background-color: $primary;
+            border-color: $white;
+            top: 27px;
+        }
+    }
+    //Size Large
+    &.irs-lg {
+        &.irs--round, &.irs--flat, &.irs--square {
+            & .irs {
+                & .irs-line {
+                    height: 14px;
+                }
+            }
+            & .irs-bar {
+                height: 14px;
+            }
+            & .irs-handle {
+                top: 28px;
+                width: 30px;
+                height: 30px;
+                &.single {}
+            }
+        }
+        &.irs--flat {
+            & .irs-handle {
+                top: 21px;
+                height: 22px;
+            }
+        }
+        &.irs--square {
+            & .irs-handle {
+                top: 26px;
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+    //Size Small
+    &.irs-sm {
+        &.irs--round, &.irs--flat, &.irs--square {
+            & .irs {
+                & .irs-line {
+                    height: 4px;
+                }
+            }
+            & .irs-bar {
+                height: 4px;
+            }
+            & .irs-handle {
+                top: 31px;
+                width: 14px;
+                height: 14px;
+                &.single {}
+            }
+        }
+        &.irs--flat {
+            & .irs-handle {
+                top: 22px;
+                height: 10px;
+            }
+        }
+        &.irs--square {
+            & .irs-handle {
+                top: 26px;
+            }
+        }
+    }
+    // Colors
+    &.secondary {
+        &.irs--round, &.irs--flat, &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    background-color: $secondary;
+                    &::before {
+                        border-top-color: $secondary;
+                    }
+                }
+            }
+            & .irs-bar, & .irs-handle {
+                background-color: $secondary;
+            }
+        }
+        &.irs--flat {
+            & .irs-handle {
+                background-color: transparent;
+                & > i {
+                    &:first-child {
+                        background-color: darken($secondary, 5);
+                    }
+                }
+            }
+        }
+        &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    &::before {
+                        border-top-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+    &.success {
+        &.irs--round, &.irs--flat, &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    background-color: $success;
+                    &::before {
+                        border-top-color: $success;
+                    }
+                }
+            }
+            & .irs-bar, & .irs-handle {
+                background-color: $success;
+            }
+        }
+        &.irs--flat {
+            & .irs-handle {
+                background-color: transparent;
+                & > i {
+                    &:first-child {
+                        background-color: darken($success, 5);
+                    }
+                }
+            }
+        }
+        &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    &::before {
+                        border-top-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+    &.danger {
+        &.irs--round, &.irs--flat, &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    background-color: $danger;
+                    &::before {
+                        border-top-color: $danger;
+                    }
+                }
+            }
+            & .irs-bar, & .irs-handle {
+                background-color: $danger;
+            }
+        }
+        &.irs--flat {
+            & .irs-handle {
+                background-color: transparent;
+                & > i {
+                    &:first-child {
+                        background-color: darken($danger, 5);
+                    }
+                }
+            }
+        }
+        &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    &::before {
+                        border-top-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+    &.warning {
+        &.irs--round, &.irs--flat, &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    background-color: $warning;
+                    &::before {
+                        border-top-color: $warning;
+                    }
+                }
+            }
+            & .irs-bar, & .irs-handle {
+                background-color: $warning;
+            }
+        }
+        &.irs--flat {
+            & .irs-handle {
+                background-color: transparent;
+                & > i {
+                    &:first-child {
+                        background-color: darken($warning, 5);
+                    }
+                }
+            }
+        }
+        &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    &::before {
+                        border-top-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+    &.info {
+        &.irs--round, &.irs--flat, &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    background-color: $info;
+                    &::before {
+                        border-top-color: $info;
+                    }
+                }
+            }
+            & .irs-bar, & .irs-handle {
+                background-color: $info;
+            }
+        }
+        &.irs--flat {
+            & .irs-handle {
+                background-color: transparent;
+                & > i {
+                    &:first-child {
+                        background-color: darken($info, 5);
+                    }
+                }
+            }
+        }
+        &.irs--square {
+            & .irs {
+                & .irs-from, & .irs-to, & .irs-single {
+                    &::before {
+                        border-top-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}

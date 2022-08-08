@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div class="content-body">
+        <form method="post" action="/admin/case/update">
+            {% csrf_token %}
+            {% for item in form %}
+                <div class="form-group">
+                    <label>{{ item.label }}</label>
+                    {{ item }}
+                    <small id="help" class="form-text text-muted">{{ item.error.0 }}</small>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">更新当日病例信息</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $('#id_province').change(function (e) {
+
+            var value = $(this).val()
+            if (value === '') {
+                return;
+            }
+            $.get('/admin/case/fetch/'+value, function (data) {
+                var obj = $.parseJSON(data)[0];
+                if (obj && obj.pk) {
+                    $('#id_existing_cases').val(obj.fields.existing_cases);
+                    $('#id_new_cases').val(obj.fields.new_cases);
+                }
+            })
+        });
+    </script>
+{% endblock %}

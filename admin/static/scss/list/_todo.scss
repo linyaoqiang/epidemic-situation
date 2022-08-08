@@ -1,0 +1,272 @@
+
+/*Wrapper*/
+.todo-list-wrapper {
+    background-color: $light-grey;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/*Container*/
+.todo-list-container {
+    width: calc(100% - 250px);
+    // Responsive
+    @media #{$large-mobile} {
+        width: 100%;
+    }
+}
+
+/*Menu*/
+.todo-list-menu {
+    padding: 30px;
+    width: 250px;
+    border-right: 1px solid #e1e1e1;
+    & .button-compose-mail {
+        margin-bottom: 30px;
+    }
+    & ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        & li {
+            margin-top: 25px;
+            &:first-child {
+                margin-top: 0;
+            }
+            & a {
+                font-size: 16px;
+                line-height: 20px;
+                display: flex;
+                & i {
+                    font-size: 20px;
+                    line-height: 1;
+                    color: $body-light;
+                    width: 30px;
+                }
+            }
+        }
+    }
+    // Responsive
+    @media #{$large-mobile} {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e1e1e1;
+        padding: 20px;
+    }
+}
+
+/*Search*/
+.todo-list-search {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 25px 20px;
+    & form {
+        display: flex;
+        flex-wrap: wrap;
+        & button {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            & i {
+                display: block;
+                font-size: 24px;
+                line-height: 25px;
+            }
+            &:hover {
+                color: $primary;
+            }
+        }
+        & input {
+            line-height: 25px;
+            padding: 0 20px;
+            border: none;
+            background-color: transparent;
+            color: $body-color;
+            @include placeholder {
+                color: $body-color;
+            }
+        }
+    }
+}
+
+/*Add New*/
+.todo-list-add-new {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & label {
+        width: 18px;
+        height: 18px;
+        position: relative;
+        margin: 0;
+        & input {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            width: 18px;
+            height: 18px;
+            visibility: hidden;
+            &:checked {
+                & + .icon {
+                    color: $secondary;
+                    &::before {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        & .icon {
+            font-size: 22px;
+            line-height: 22px;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease 0s;
+            color: $body-light;
+        }
+    }
+    & input {
+        border: none;
+        background-color: transparent;
+        line-height: 28px;
+        flex-grow: 1;
+        color: $body-color;
+        padding: 0 15px;
+    }
+    & .submit {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        & i {
+            display: block;
+            font-size: 24px;
+            line-height: 1;
+            margin-top: -2px;
+        }
+        &:hover {
+            color: $primary;
+        }
+    }
+    // Responsive
+    @media #{$extra-small-mobile}{
+        padding: 15px 20px;
+    }
+}
+
+/*Todo List*/
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    & li {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid $grey;
+        & .list-content {
+            flex-grow: 1;
+            padding: 20px 0;
+            & p {
+                font-weight: 600;
+                margin-bottom: 0;
+            }
+            & .time {
+                margin-top: 10px;
+                display: block;
+                line-height: 1;
+                color: $primary;
+            }
+        }
+        & .list-action {
+            max-width: 90px;
+            flex: 1 0 90px;
+            justify-content: space-between;
+            display: flex;
+            padding: 20px;
+            margin-top: 1px;
+            &.right {
+                width: auto;
+                flex: 0 0 auto;
+                & .remove {
+                    display: block;
+                }
+            }
+            & .adomx-checkbox {
+                margin: 0;
+                padding-left: 18px;
+                width: 18px;
+            }
+            & .remove {
+                display: none;
+            }
+            & button {
+                padding: 0;
+                border: none;
+                background-color: transparent;
+                color: $body-light;
+                & i {
+                    font-size: 22px;
+                    display: block;
+                    line-height: 22px;
+                }
+                &.status {
+                    &.stared {
+                        color: $secondary;
+                    }
+                }
+                &.remove {
+                    &:hover {
+                        color: $danger;
+                    }
+                }
+            }
+        }
+        &.done {
+            & .list-content {
+                & p {
+                    text-decoration: line-through;
+                }
+            }
+        }
+        
+    }
+    // Responsive
+    @media #{$extra-small-mobile}{
+        & li {
+            flex-direction: column;
+            & .list-content {
+                padding: 0 20px 15px;
+            }
+            & .list-action {
+                padding: 15px 20px;
+                justify-content: flex-start;
+                width: 100%;
+                flex: 1 0 100%;
+                margin-top: 0px;
+                & button {
+                    margin-right: 15px;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    &.remove {
+                        display: block;
+                    }
+                }
+                & .adomx-checkbox {
+                    margin-right: 15px;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+                &.right {
+                    display: none;
+                }
+            }
+        }
+    }
+}

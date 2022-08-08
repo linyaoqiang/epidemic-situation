@@ -1,0 +1,126 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div class="content-body">
+        <form method="post" action="/admin/area_policy/update">
+            {% csrf_token %}
+            {% if area_policy_id %}
+                <input type="hidden" name="id" value="{{ area_policy_id }}">
+            {% endif %}
+            <div class="form-group">
+                <label>省份</label>
+                <select id="id_province" class="form-control">
+                    <option value="">全部</option>
+                    {% for item in provinces %}
+                        {% if item.id != province.id %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% else %}
+                            <option value="{{ item.id }}" selected>{{ item.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>城市</label>
+                <select id="id_city" class="form-control">
+                    <option value="">全部</option>
+                    {% for item in cities %}
+                        {% if item.id != city.id %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% else %}
+                            <option value="{{ item.id }}" selected>{{ item.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+            {% for item in form %}
+                <div class="form-group">
+                    <label>{{ item.label }}</label>
+                    {{ item }}
+                    <small id="help" class="form-text text-muted">{{ item.error.0 }}</small>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">
+                更新地区政策
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        var city_html = $('#id_city').html()
+        var area_html = $('#id_area').html()
+
+        function changeProvince() {
+            var province_id = $('#id_province').val()
+            if (province_id === '' || province_id === undefined) {
+                $('#id_city').html(city_html);
+                $('#id_city option[value=""]').attr('selected', true);
+                var selected_value = $('#id_area option:selected').val()
+                $('#id_area').html(area_html);
+                $('#id_area option[value="'+selected_value+'"]').attr('selected', true);
+                return;
+            }
+
+            $.get('/admin/location/' + province_id, {}, function (data) {
+                var content = '<option value="">全部</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ city.id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    } else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#id_city').html(content);
+                changeCity()
+            });
+        }
+
+
+        function changeCity() {
+
+            var city_id = $('#id_city').val();
+
+            if (city_id === '' || city_id === undefined) {
+                var selected_value = $('#id_area option:selected').val()
+                $('#id_area').html(area_html);
+                $('#id_area option[value="'+selected_value+'"]').attr('selected', true);
+                return;
+            }
+            $.get('/admin/location/1/' + city_id, {}, function (data) {
+                var content = '<option>-------</option>';
+                data = $.parseJSON(data);
+                var obj = null;
+                for (var i = 0; i < data.length; i++) {
+                    obj = data[i];
+                    content += '\n';
+                    if (obj.pk == '{{ area.id }}') {
+                        content += '<option value="' + obj.pk + '" selected>' + obj.fields.name + '</option>';
+                    }else {
+                        content += '<option value="' + obj.pk + '">' + obj.fields.name + '</option>';
+                    }
+                }
+                $('#id_area').html(content);
+            });
+        }
+
+
+        $('#id_province').change(function (e) {
+            changeProvince();
+        });
+
+        $('#id_city').change(function (e) {
+            changeCity();
+        })
+
+
+        changeProvince();
+
+    </script>
+{% endblock %}

@@ -1,0 +1,585 @@
+/*--
+    - Alert
+--------------------------------------*/
+.alert {
+    color: $body-color;
+    padding: 15px 20px;
+    padding-right: 45px;
+    border: none;
+    background-color: $light-blue;
+    position: relative;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    & i {
+        margin-right: 5px;
+    }
+    & .alert-link {
+        color: $primary;
+        position: relative;
+        &::before {
+            position: absolute;
+            left: auto;
+            right: 0;
+            bottom: 3px;
+            height: 1px;
+            width: 0;
+            content: "";
+            background-color: $primary;
+            transition: all 0.3s ease 0s;
+        }
+        &:hover {
+            &::before{
+                width: 100%;
+                left: 0;
+            }
+        }
+    }
+    & hr {
+        border-top-color: rgba($heading-color, 0.1) !important;
+    }
+    & .close {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 1px solid;
+        opacity: 1;
+        border-radius: 50px;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        text-shadow: none;
+        & i {
+            float: none;
+            margin: 0;
+            font-size: 13px;
+            line-height: 18px;
+            transition: all 0.3s ease 0s;
+        }
+        &:hover {
+            opacity: 1 !important;
+            & i {
+                color: $white;
+            }
+        }
+    }
+    &.alert-sm {
+        padding: 10px 15px;
+        & i {
+            font-size: 14px;
+            line-height: 24px;
+            margin-right: 10px;
+        }
+        & p {
+            font-size: 12px;
+            line-height: 24px;
+        }
+    }
+    &.alert-lg {
+        padding: 20px 30px;
+        & i {
+            font-size: 24px;
+            line-height: 30px;
+            margin-right: 25px;
+        }
+        & p {
+            font-size: 18px;
+            line-height: 30px;
+            & a {
+                &::before {
+                    height: 2px;
+                }
+            }
+        }
+    }
+    // Colors
+    &.alert-primary {
+        background-color: rgba($primary, 0.1);
+        & i {
+            color: $primary;
+        }
+        & .alert-link {
+            color: $primary;
+            &::before{
+                background-color: $primary;
+            }
+        }
+        & .close {
+            border-color: $primary;
+            color: $primary;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+    &.alert-secondary {
+        background-color: rgba($secondary, 0.1);
+        & i {
+            color: $secondary;
+        }
+        & .alert-link {
+            color: $secondary;
+            &::before{
+                background-color: $secondary;
+            }
+        }
+        & .close {
+            border-color: $secondary;
+            color: $secondary;
+            &:hover{
+                background-color: $secondary;
+            }
+        }
+    }
+    &.alert-success {
+        background-color: rgba($success, 0.1);
+        & i {
+            color: $success;
+        }
+        & .alert-link {
+            color: $success;
+            &::before{
+                background-color: $success;
+            }
+        }
+        & .close {
+            border-color: $success;
+            color: $success;
+            &:hover{
+                background-color: $success;
+            }
+        }
+    }
+    &.alert-danger {
+        background-color: rgba($danger, 0.1);
+        & i {
+            color: $danger;
+        }
+        & .alert-link {
+            color: $danger;
+            &::before{
+                background-color: $danger;
+            }
+        }
+        & .close {
+            border-color: $danger;
+            color: $danger;
+            &:hover{
+                background-color: $danger;
+            }
+        }
+    }
+    &.alert-warning {
+        background-color: rgba($warning, 0.1);
+        & i {
+            color: $warning;
+        }
+        & .alert-link {
+            color: $warning;
+            &::before{
+                background-color: $warning;
+            }
+        }
+        & .close {
+            border-color: $warning;
+            color: $warning;
+            &:hover{
+                background-color: $warning;
+            }
+        }
+    }
+    &.alert-info {
+        background-color: rgba($info, 0.1);
+        & i {
+            color: $info;
+        }
+        & .alert-link {
+            color: $info;
+            &::before{
+                background-color: $info;
+            }
+        }
+        & .close {
+            border-color: $info;
+            color: $info;
+            &:hover{
+                background-color: $info;
+            }
+        }
+    }
+    &.alert-dark {
+        background-color: rgba($heading-color, 0.1);
+        & i {
+            color: $heading-color;
+        }
+        & .alert-link {
+            color: $heading-color;
+            &::before{
+                background-color: $heading-color;
+            }
+        }
+        & .close {
+            border-color: $heading-color;
+            color: $heading-color;
+            &:hover{
+                background-color: $heading-color;
+            }
+        }
+    }
+    // Alerts Solid Colors
+    &.alert-solid-primary {
+        background-color: $primary;
+        color: $white;
+        & h1, h2, h3, h4, h5, h6 {
+            color: inherit;
+        }
+        & i {
+            color: $white;
+        }
+        & .alert-link {
+            color: $white;
+            &::before{
+                background-color: $white;
+            }
+        }
+        & .close {
+            border-color: $white;
+            color: $white;
+            &:hover{
+                background-color: $white;
+                & i {
+                    color: $primary;
+                }
+            }
+        }
+    }
+    &.alert-solid-secondary {
+        background-color: $secondary;
+        color: $white;
+        & h1, h2, h3, h4, h5, h6 {
+            color: inherit;
+        }
+        & i {
+            color: $white;
+        }
+        & .alert-link {
+            color: $white;
+            &::before{
+                background-color: $white;
+            }
+        }
+        & .close {
+            border-color: $white;
+            color: $white;
+            &:hover{
+                background-color: $white;
+                & i {
+                    color: $secondary;
+                }
+            }
+        }
+    }
+    &.alert-solid-success {
+        background-color: $success;
+        color: $white;
+        & h1, h2, h3, h4, h5, h6 {
+            color: inherit;
+        }
+        & i {
+            color: $white;
+        }
+        & .alert-link {
+            color: $white;
+            &::before{
+                background-color: $white;
+            }
+        }
+        & .close {
+            border-color: $white;
+            color: $white;
+            &:hover{
+                background-color: $white;
+                & i {
+                    color: $success;
+                }
+            }
+        }
+    }
+    &.alert-solid-danger {
+        background-color: $danger;
+        color: $white;
+        & h1, h2, h3, h4, h5, h6 {
+            color: inherit;
+        }
+        & i {
+            color: $white;
+        }
+        & .alert-link {
+            color: $white;
+            &::before{
+                background-color: $white;
+            }
+        }
+        & .close {
+            border-color: $white;
+            color: $white;
+            &:hover{
+                background-color: $white;
+                & i {
+                    color: $danger;
+                }
+            }
+        }
+    }
+    &.alert-solid-warning {
+        background-color: $warning;
+        color: $white;
+        & h1, h2, h3, h4, h5, h6 {
+            color: inherit;
+        }
+        & i {
+            color: $white;
+        }
+        & .alert-link {
+            color: $white;
+            &::before{
+                background-color: $white;
+            }
+        }
+        & .close {
+            border-color: $white;
+            color: $white;
+            &:hover{
+                background-color: $white;
+                & i {
+                    color: $warning;
+                }
+            }
+        }
+    }
+    &.alert-solid-info {
+        background-color: $info;
+        color: $white;
+        & h1, h2, h3, h4, h5, h6 {
+            color: inherit;
+        }
+        & i {
+            color: $white;
+        }
+        & .alert-link {
+            color: $white;
+            &::before{
+                background-color: $white;
+            }
+        }
+        & .close {
+            border-color: $white;
+            color: $white;
+            &:hover{
+                background-color: $white;
+                & i {
+                    color: $info;
+                }
+            }
+        }
+    }
+    &.alert-solid-dark {
+        background-color: $heading-color;
+        color: $white;
+        & h1, h2, h3, h4, h5, h6 {
+            color: inherit;
+        }
+        & i {
+            color: $white;
+        }
+        & .alert-link {
+            color: $white;
+            &::before{
+                background-color: $white;
+            }
+        }
+        & .close {
+            border-color: $white;
+            color: $white;
+            &:hover{
+                background-color: $white;
+                & i {
+                    color: $heading-color;
+                }
+            }
+        }
+    }
+    // Outline
+    &.alert-outline-primary {
+        border: 1px solid $primary;
+        color: $primary;
+        background-color: transparent;
+        & p {
+            color: $body-color;
+        }
+        & i {
+            color: $primary;
+        }
+        & .alert-link {
+            color: $primary;
+            &::before{
+                background-color: $primary;
+            }
+        }
+        & .close {
+            border-color: $primary;
+            color: $primary;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+    &.alert-outline-secondary {
+        border: 1px solid $secondary;
+        color: $secondary;
+        background-color: transparent;
+        & p {
+            color: $body-color;
+        }
+        & i {
+            color: $secondary;
+        }
+        & .alert-link {
+            color: $secondary;
+            &::before{
+                background-color: $secondary;
+            }
+        }
+        & .close {
+            border-color: $primary;
+            color: $primary;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+    &.alert-outline-success {
+        border: 1px solid $success;
+        color: $success;
+        background-color: transparent;
+        & p {
+            color: $body-color;
+        }
+        & i {
+            color: $success;
+        }
+        & .alert-link {
+            color: $success;
+            &::before{
+                background-color: $success;
+            }
+        }
+        & .close {
+            border-color: $primary;
+            color: $primary;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+    &.alert-outline-danger {
+        border: 1px solid $danger;
+        color: $danger;
+        background-color: transparent;
+        & p {
+            color: $body-color;
+        }
+        & i {
+            color: $danger;
+        }
+        & .alert-link {
+            color: $danger;
+            &::before{
+                background-color: $danger;
+            }
+        }
+        & .close {
+            border-color: $primary;
+            color: $primary;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+    &.alert-outline-warning {
+        border: 1px solid $warning;
+        color: $warning;
+        background-color: transparent;
+        & p {
+            color: $body-color;
+        }
+        & i {
+            color: $warning;
+        }
+        & .alert-link {
+            color: $warning;
+            &::before{
+                background-color: $warning;
+            }
+        }
+        & .close {
+            border-color: $primary;
+            color: $primary;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+    &.alert-outline-info {
+        border: 1px solid $info;
+        color: $info;
+        background-color: transparent;
+        & p {
+            color: $body-color;
+        }
+        & i {
+            color: $info;
+        }
+        & .alert-link {
+            color: $info;
+            &::before{
+                background-color: $info;
+            }
+        }
+        & .close {
+            border-color: $primary;
+            color: $primary;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+    &.alert-outline-dark {
+        border: 1px solid $heading-color;
+        color: $heading-color;
+        background-color: transparent;
+        & p {
+            color: $body-color;
+        }
+        & i {
+            color: $heading-color;
+        }
+        & .alert-link {
+            color: $heading-color;
+            &::before{
+                background-color: $heading-color;
+            }
+        }
+        & .close {
+            border-color: $primary;
+            color: $primary;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+}

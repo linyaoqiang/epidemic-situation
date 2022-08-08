@@ -1,0 +1,154 @@
+{% extends 'index.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static '' %}">
+<style>
+    option {
+        font-size: 48px;
+    }
+
+    .content-body > div, nav, button {
+        margin-top: 20px;
+    }
+</style>
+{% block content %}
+    <!-- Content Body Start -->
+    <div class="content-body">
+        <!-- Page Headings Start -->
+        <div class="row justify-content-between align-items-center mb-10">
+
+            <!-- Page Heading Start -->
+            <div class="col-12 col-lg-auto mb-20">
+                <div class="page-heading">
+                    <h3 class="title">表格 <span>/ 疫情病例显示</span></h3>
+                </div>
+            </div><!-- Page Heading End -->
+
+        </div><!-- Page Headings End -->
+
+        <div class="form-row" style="margin-top: 20px;">
+            <div class="form-group col-md-4">
+                <label for="province-select">省份(自治区)</label>
+                <select id="province-select" class="form-control">
+                    <option value="">全部</option>
+                    {% for item in provinces %}
+                        {% if province_id != item.id %}
+                            <option value="{{ item.id }}">{{ item.name }}</option>
+                        {% else %}
+                            <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="previous-date">日期区间上</label>
+                <input id="previous-date" class="form-control" type="date" value="{{ previous_date }}">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="next-date">日期区间下</label>
+                <input id="next-date" class="form-control" type="date" value="{{ next_date }}">
+            </div>
+
+        </div>
+
+
+        <button class="btn-default btn-primary" style="margin-top: 20px;"><a href="/admin/case/edit">更新当日疫情信息</a></button>
+
+        <table class="table table-bordered" style="margin-top: 20px;">
+            <thead>
+            <tr>
+                <td>省份(自治区)</td>
+                <td>现有病例</td>
+                <td>新增病例</td>
+                <td>发布时间</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in cases %}
+                <tr>
+                    <td>{{ item.province.name }}</td>
+                    <td>{{ item.existing_cases }}</td>
+                    <td>{{ item.new_cases }}</td>
+                    <td>{{ item.public_date|date:'Y年m月d日' }}</td>
+                    <td>
+                        {% if now_date == item.public_date %}
+                            <button class="btn-default btn-outline-success"><a href="/admin/case/edit?p_id={{ item.province.id }}">编辑</a></button>
+                        {% endif %}
+                        <button class="btn-default btn-danger"><a href="/admin/case/delete/{{ item.id }}">删除</a></button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <nav>
+
+            <ul class="pagination">
+                {% if page_number > 1 %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/case/display?p_id={{ province_id }}&p_date={{ previous_date }}&n_date={{ next_date }}&page={{ page_number|add:-1 }}&size=={{ paginator.per_page }}">上一页</a>
+                    </li>
+                {% endif %}
+
+                {% for index in paginator.page_range %}
+                    {% if page_number == index %}
+                        <li class="page-item active"><a class="page-link" href="/admin/case/display?p_id={{ province_id }}&p_date={{ previous_date }}&n_date={{ next_date }}&page={{ index }}&size=={{ paginator.per_page }}">{{ index }}</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link"
+                                                 href="/admin/case/display?p_id={{ province_id }}&p_date={{ previous_date }}&n_date={{ next_date }}&page={{ index }}&size=={{ paginator.per_page }}">{{ index }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_number < paginator.num_pages %}
+                    <li class="page-item"><a class="page-link"
+                                             href="/admin/case/display?p_id={{ province_id }}&p_date={{ previous_date }}&n_date={{ next_date }}&page={{ page_number|add:1 }}&size=={{ paginator.per_page }}">下一页</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+        </nav>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+
+
+    <!--Plugins JS-->
+    <script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+
+    <script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.min.js' %}"></script>
+    <script src="{% static 'js/plugins/footable/footable.active.js' %}"></script>
+
+    <script type="text/javascript">
+        $('#province-select').change(function (e) {
+            var value = $(this).val();
+            var api  = '/admin/case/display?page={{ page_number }}&size={{ page_size }}'+
+                '&p_id='+value+'&p_date={{ previous_date }}&n_date={{ next_date }}';
+            window.location.href = api;
+
+        });
+
+        $('#previous-date').change(function (e) {
+            var value = $(this).val();
+            var api  = '/admin/case/display?page={{ page_number }}&size={{ page_size }}'+
+                '&p_id={{ province_id }}&p_date='+value+'&n_date={{ next_date }}';
+            window.location.href = api;
+        });
+
+        $('#next-date').change(function (e) {
+            var value = $(this).val();
+            var api  = '/admin/case/display?page={{ page_number }}&size={{ page_size }}'+
+                '&p_id={{ province_id }}&p_date={{ previous_date }}&n_date='+value;
+            window.location.href = api;
+        });
+    </script>
+
+{% endblock %}

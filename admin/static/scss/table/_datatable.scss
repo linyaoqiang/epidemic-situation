@@ -1,0 +1,234 @@
+/*--
+    - Data Table
+--------------------------------------*/
+
+/*Data Table Wrap*/
+.data-table-wrap {
+    margin-bottom: -20px;
+    & .table-responsive {
+        padding-bottom: 20px;
+    }
+}
+
+/*Data Table*/
+table.data-table {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    flex: 1 0 100%;
+    width: 100% !important;
+    /* Table Head */
+    & thead {
+        & tr {
+            & th {
+                white-space: nowrap;
+                &.sorting, &.sorting_asc, &.sorting_desc, &.sorting_asc_disabled, &.sorting_desc_disabled {
+                    background-color: transparent;
+                    background-image: none;
+                }
+                &:after {
+                    margin-left: 10px;
+                    font-family: fontawesome;
+                    cursor: pointer;
+                }
+                &.sorting_asc:after {
+                    content: "\f0de";
+                }
+                &.sorting_desc:after {
+                    content: "\f0dd";
+                }
+                &.sorting:after {
+                    content: "\f0dc";
+                }
+            }
+        }
+    }
+    /* Table Body */
+    & tbody {
+        & tr {
+            & td {
+                white-space: nowrap;
+                &.sorting_1 {
+                    &::before {}
+                }
+            }
+            &.odd {}
+            &.even {}
+            &.child {
+                & td.child {
+                    & ul {
+                        &.dtr-details {}
+                        & li {}
+                    }
+                }
+            }
+        }
+    }
+    
+    // Collapsed (For Responsive)
+    &.collapsed {
+        /* Table Head */
+        & thead {
+            & tr {
+                & th {
+                }
+            }
+        }
+        /* Table Body */
+        & tbody {
+            & tr {
+                & td {
+                    &.sorting_1 {
+                        position: relative;
+                        padding-left: 30px;
+                        cursor: pointer;
+                        &::before {
+                            content: "\f278";
+                            font-family: $icon-mdif;
+                            position: absolute;
+                            left: 7px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 16px;
+                            height: 16px;
+                            font-size: 12px;
+                            line-height: 16px;
+                            text-align: center;
+                            background-color: $primary;
+                            color: $white;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+                &.odd {}
+                &.even {}
+                &.parent {
+                    & td {
+                        &.sorting_1 {
+                            &::before {
+                                content: "\f273";
+                            }
+                        }
+                    }
+                }
+                &.child {
+                    background-color: #f9f9f9;
+                    & td.child {
+                        padding: 0;
+                        & ul {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            &.dtr-details {}
+                            & li {
+                                border-bottom: 1px solid #dee2e6;
+                                padding: .75rem;
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+                                & .dtr-title {
+                                    font-weight: 700;
+                                    margin-right: 10px;
+                                    min-width: 75px;
+                                }
+                                & .dtr-data {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*Data Table Wrapper*/
+.dataTables_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    
+    // Export Buttons
+    & .dt-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 6px;
+        & .dt-button {
+            @extend .button;
+            @extend .button-primary;
+            @extend .button-sm;
+        }
+    }
+    
+    // Length & Filter
+    & .dataTables_length, .dataTables_filter {
+        display: flex;
+        margin-bottom: 10px;
+        & label {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            & input {
+                @extend .form-control;
+                width: auto;
+                padding: 7px 20px;
+                margin-left: 5px;
+            }
+            & select {
+                @extend .form-control;
+                width: auto;
+                padding: 6px 35px 6px 10px !important;
+                margin: 0 5px;
+            }
+        }
+        // Responsive
+        @media #{$small-mobile} {
+            flex: 1 0 100%;
+        }
+    }
+    
+    // Info
+    & .dataTables_info {}
+    
+    // Pagination
+    & .dataTables_paginate {
+        margin-top: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: -5px;
+        & .paginate_button {
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-flex;
+            background-color: transparent;
+            color: $body-color;
+            border-radius: 4px;
+            text-transform: capitalize;
+            font-size: 15px;
+            line-height: 24px;
+            padding: 4px 12px;
+            border: 1px solid #dee2e6;
+            & i {
+                font-size: 20px;
+                margin: 3px 0 0 !important;
+            }
+            &.current {
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+            }
+            &.previous {
+                margin-left: 0;
+                padding: 4px 15px;
+            }
+            &.next {
+                padding: 4px 15px;
+                margin-right: 0 !important;
+            }
+            &:hover {
+                background-color: $primary;
+                border-color: $primary;;
+                color: $white;;
+            }
+        }
+    }
+}

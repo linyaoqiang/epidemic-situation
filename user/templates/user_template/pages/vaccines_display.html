@@ -1,0 +1,150 @@
+{% extends 'user_template/index.html' %}
+{% load static %}
+{% block content %}
+    <div class="layui-container">
+
+
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">预约疫苗</h2>
+                <div class="layui-colla-content layui-show">
+                    疫苗能够极有效的防控疫情的发生!
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-form" style="margin-top: 20px;">
+            <div class="layui-form-item layui-inline">
+                <label for="company-select" class="layui-form-label">疫苗公司</label>
+                <div class="layui-input-block">
+                    <select id="company-select" lay-filter="company">
+                        <option value="">全部</option>
+                        {% for item in vaccines_companies %}
+                            {% if company_id != item.id %}
+                                <option value="{{ item.id }}">{{ item.name }}</option>
+                            {% else %}
+                                <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item layui-inline">
+                <label for="location-select" class="layui-form-label">位置</label>
+                <div class="layui-input-block">
+                    <select id="location-select" lay-filter="location">
+                        <option value="">全部</option>
+                        {% for item in vaccines_locations %}
+                            {% if location_id != item.id %}
+                                <option value="{{ item.id }}">{{ item.name }}</option>
+                            {% else %}
+                                <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>疫苗公司</th>
+                <th>接种单位</th>
+                <th>针次</th>
+                <th>数量</th>
+                <th>发布时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in vaccines_list %}
+                <tr>
+                    <td>{{ item.location }}</td>
+                    <td>{{ item.company }}</td>
+                    <td>{{ item.get_needles_display }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.create_time|date:'Y年m月d日' }}</td>
+                    <td>
+                        {% if item.quantity > 0 and item.id in already_vaccines_ids %}
+                            <span class="layui-btn layui-btn-primary layui-border-red">已经预约</span>
+                        {% else %}
+                            <button class="layui-btn layui-btn-normal make-vaccines-btn" data-make="/vaccines/make/{{ item.id }}">预约</button>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="page">
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+                , count: {{ paginator.count }} //数据总数，从服务端得到
+                , limits: [2, 4, 6, 8, 10]
+                , layout: ['prev', 'page', 'next', 'limit']
+                , groups: 10
+                , limit: {{ page_size }}
+                , curr: {{ page_number }}
+                , jump: function (obj, first) {
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        var api = '/vaccines?page=' + obj.curr + '&size=' + obj.limit
+                        api += '&c_id={{ company_id }}&l_id={{ location_id}}'
+                        window.location.href = api
+                    }
+                }
+            });
+        });
+
+        layui.use(['form', 'jquery','layer'], function () {
+            var form = layui.form;
+            window.$ = layui.jquery;
+            var layer = layui.layer;
+
+            form.on('select(company)',function (data) {
+                var value = $('#company-select').val();
+                var api = '/vaccines?c_id=' + value + '&l_id={{ location_id }}';
+                window.location.href = api;
+            });
+
+            form.on('select(location)',function (data) {
+                var value = $('location-select').val()
+                var api = '/vaccines?c_id={{ company_id }}&l_id=' + value;
+                window.location.href = api;
+            });
+
+            $('.make-vaccines-btn').click(function (e) {
+                var api = $(this).data('make');
+                $.get(api, {}, function (data) {
+                    var obj = $.parseJSON(data);
+                    if (obj.status === 200) {
+                        window.location.href = '/vaccines?c_id={{ company_id }}&l_id={{ location_id }}'+
+                        '&page={{ page_number }}&size={{ page_size }}';
+                        return;
+                    }
+
+                    layer.msg(obj.message)
+                })
+            })
+
+        });
+
+
+    </script>
+{% endblock %}

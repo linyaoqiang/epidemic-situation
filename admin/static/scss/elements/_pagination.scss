@@ -1,0 +1,55 @@
+/*--
+    - Pagination
+--------------------------------------*/
+.pagination {
+    flex-wrap: wrap;
+    margin-bottom: -10px;
+    padding: 0;
+    & .page-item {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        &:last-child {
+            margin-right: 0;
+        }
+        & .page-link  {
+            display: inline-block;
+            background-color: transparent;
+            color: $body-color;
+            border-radius: 4px;
+            text-transform: capitalize;
+            font-size: 15px;
+            line-height: 24px;
+            padding: 4px 15px;
+            border-width: 1px;
+            border-style: solid;
+            &:hover {
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+            }
+        }
+        &.active {
+            & .page-link {
+                background-color: $primary;
+                border-color: $primary;
+                color: $white;
+            }
+        }
+    }
+    &.pagination-lg {
+        & .page-item {
+            & .page-link  {
+                font-size: 18px;
+                padding: 10px 20px;
+            }
+        }
+    }
+    &.pagination-sm {
+        & .page-item {
+            & .page-link  {
+                font-size: 12px;
+                padding: 0 10px;
+            }
+        }
+    }
+}

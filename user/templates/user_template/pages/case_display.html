@@ -1,0 +1,147 @@
+{% extends 'user_template/index.html' %}
+{% load static %}
+{% block content %}
+    <div class="layui-container">
+
+
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">全国病例显示</h2>
+                <div class="layui-colla-content layui-show">
+                    通过了解各个省份与城市的的病例情况，做好出行与否
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="height: 100px;">
+            <div class="layui-card" style="float: left;">
+                <div class="layui-card-header">今天全国现有病例</div>
+                <div class="layui-card-body">
+                    {{ national_existing_cases }}
+                </div>
+            </div>
+
+            <div class="layui-card" style="float: left;margin-left: 200px;">
+                <div class="layui-card-header" >今天全国新增病例</div>
+                <div class="layui-card-body">
+                    {{ national_new_cases }}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-form" style="margin-top: 20px;">
+            <div class="layui-form-item layui-inline">
+                <label for="province-select" class="layui-form-label">省份(自治区)</label>
+                <div class="layui-input-block">
+                    <select id="province-select" lay-filter="province" class="form-control">
+                        <option value="">全部</option>
+                        {% for item in provinces %}
+                            {% if province_id != item.id %}
+                                <option value="{{ item.id }}">{{ item.name }}</option>
+                            {% else %}
+                                <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item layui-inline">
+                <label for="city-select" class="layui-form-label">城市</label>
+                <div class="layui-input-block">
+                    <input id="previous-date" class="layui-input" type="date" value="{{ previous_date }}">
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-inline">
+                <div class="layui-input-block">
+                    <input id="next-date" class="layui-input" type="date" value="{{ next_date }}">
+                </div>
+            </div>
+
+        </div>
+
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>省份(自治区)</th>
+                <th>现有病例</th>
+                <th>新增病例</th>
+                <th>发布时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in cases %}
+                <tr>
+                    <td>{{ item.province.name }}</td>
+                    <td>{{ item.existing_cases }}</td>
+                    <td>{{ item.new_cases }}</td>
+                    <td>{{ item.public_date|date:'Y年m月d日' }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div id="page">
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+                , count: {{ paginator.count }} //数据总数，从服务端得到
+                , limits: [2, 4, 6, 8, 10]
+                , layout: ['prev', 'page', 'next', 'limit']
+                , groups: 10
+                , limit: {{ page_size }}
+                , curr: {{ page_number }}
+                , jump: function (obj, first) {
+                    //首次不执行
+                    if (!first) {
+                        //do something
+                        var api = '/case?page=' + obj.curr + '&size=' + obj.limit
+                        api += '&p_date={{ previous_date }}&n_date={{ next_date}}'
+                        window.location.href = api
+                    }
+                }
+            });
+        });
+
+        layui.use(['form', 'jquery'], function () {
+            var form = layui.form;
+            window.$ = layui.jquery;
+
+            form.on('select(province)', function (data) {
+                var value = $('#province-select').val();
+                var api = '/case?page={{ page_number }}&size={{ page_size }}' +
+                    '&p_id=' + value + '&p_date={{ previous_date }}&n_date={{ next_date }}';
+                window.location.href = api;
+            })
+
+            $('#previous-date').change(function (e) {
+                var value = $(this).val();
+                var api = '/case?page={{ page_number }}&size={{ page_size }}' +
+                    '&p_id={{ province_id }}&p_date=' + value + '&n_date={{ next_date }}';
+                window.location.href = api;
+            });
+
+            $('#next-date').change(function (e) {
+                var value = $(this).val();
+                var api = '/case?page={{ page_number }}&size={{ page_size }}' +
+                    '&p_id={{ province_id }}&p_date={{ previous_date }}&n_date=' + value;
+                window.location.href = api;
+            });
+
+        });
+
+
+    </script>
+{% endblock %}

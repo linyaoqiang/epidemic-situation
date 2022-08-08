@@ -1,0 +1,265 @@
+/*-----------------------------------------------------------------------------------
+
+    Template Name: Adomx - Responsive Bootstrap 4 Admin Template
+    Version: 1.0
+
+-----------------------------------------------------------------------------------
+    
+    CSS INDEX
+    ===================
+	
+    01. Template default CSS
+    02. Elements CSS
+        Baisc ---------
+        - Accordion
+        - Alert
+        - Avatar
+        - Badge
+        - Button
+        - Card
+        - List
+        - Pagination
+        - Progress
+        - Spinner
+        - Tab
+        Advance ---------
+        - Fullcalendar
+        - Media Player
+        - Ratting
+        - Sweetalert
+        - Toastr
+    03. Form CSS
+        - Basic
+        - Checkbox (Custom)
+        - Radio (Custom)
+        - Range Slider
+        - Select
+        - Switch (Custom)
+    04. Table CSS
+        - Data Table
+        - Foo Table
+        - JSGrid
+    05. Step Widget CSS
+    06. Tippy CSS
+    07. Header CSS
+        - Custom Header Color CSS
+        - RTL Header CSS
+    08. Side Header CSS
+        - Custom Side Header Color CSS
+        - RTL Side Header CSS
+    09. Top Report CSS
+    10. Todo List CSS (App)
+    11. Chat CSS (App)
+    12. Mail CSS (App)
+    13. Chart CSS
+    14. Vmap CSS
+    15. Author CSS
+    16. Login & Resister CSS
+    17. News CSS
+    18. Pricing CSS
+    19. Error CSS
+    20. Footer CSS
+    21. Dark Skin (Dark Version) CSS
+    22. RTL Version CSS
+
+-----------------------------------------------------------------------------------*/
+@import '../variabls';
+$primary: $pink;
+@import '../common';
+@import '../elements';
+@import '../form';
+@import '../table';
+@import '../step-wizard';
+@import '../tippy';
+// Header
+@import '../header';
+@import '../side-header';
+@import '../top-report';
+// Apps (Todo List, Chat & Mail)
+@import '../todo';
+@import '../chat';
+@import '../mail';
+// Chart & Map
+@import '../chart';
+@import '../vmap';
+// Others
+@import '../author';
+@import '../login-register';
+@import '../news';
+@import '../pricing';
+@import '../error';
+@import '../footer';
+
+// Customizer
+.customizer-wrapper {
+    position: fixed;
+    right: -300px;
+    top: 0;
+    height: 100%;
+    padding: 40px 0;
+    z-index: 99999;
+    background-color: $white;
+    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: all 0.3s ease 0s;
+    &.open {
+        right: 0;
+    }
+    & .inner {
+        padding: 0 30px;
+        height: 100%;
+        & .nav {
+            margin: 0 -5px;
+            display: flex;
+            list-style: none;
+            padding: 0;
+            & li {
+                margin: 0 5px;
+                flex-grow: 1;
+                & a {
+                    padding: 0 10px 5px;
+                    border-bottom: 3px solid $grey;
+                    &.active, &:hover {
+                        border-color: $primary;
+                        color: $primary;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+.customizer-toggle {
+    position: absolute;
+    right: 100%;
+    top: 25%;
+    border: none;
+    background-color: $white;
+    box-shadow: -10px 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    & i {
+        line-height: 20px;
+        font-size: 20px;
+        display: block;
+    }
+}
+.dark-rtl-setting {
+    margin-bottom: 30px;
+    & .adomx-switch {
+        margin-bottom: 20px;
+        cursor: pointer;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+.cus-radio {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    padding-right: 0;
+    line-height: 19px;
+    margin: 0;
+    cursor: default;
+    background-color: transparent;
+    border: none;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    &.active {
+        & .icon {
+            &::before {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    }
+    & .icon {
+        width: 18px;
+        height: 18px;
+        display: block;
+        border-radius: 50%;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #cccccc;
+        transition: all 0.3s ease 0s;
+        &::before {
+            content: "";
+            display: block;
+            border-radius: 50%;
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            background-color: $white;
+            opacity: 0;
+            transform: scale(3);
+            transition: all 0.3s ease 0s;
+        }
+    }
+    // Colors
+    &.light {
+        & .icon {
+            background-color: $grey;
+        }
+    }
+    &.dark {
+        & .icon {
+            background-color: $dark;
+        }
+    }
+    &.primary {
+        & .icon {
+            background-color: $primary;
+        }
+    }
+    &.secondary {
+        & .icon {
+            background-color: $secondary;
+        }
+    }
+    &.indigo {
+        & .icon {
+            background-color: $indigo;
+        }
+    }
+    &.purple {
+        & .icon {
+            background-color: $purple;
+        }
+    }
+    &.pink {
+        & .icon {
+            background-color: $pink;
+        }
+    }
+    &.red {
+        & .icon {
+            background-color: $red;
+        }
+    }
+    &.brown {
+        & .icon {
+            background-color: $brown;
+        }
+    }
+    &.orange {
+        & .icon {
+            background-color: $orange;
+        }
+    }
+    &.green {
+        & .icon {
+            background-color: $green;
+        }
+    }
+}
+
+/*Dark & RTL Version Style*/
+@import '../skin-dark';
+@import '../style-rtl';

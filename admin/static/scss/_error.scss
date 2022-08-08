@@ -1,0 +1,100 @@
+/*----------------------------------------*/
+/*  19. Error CSS
+/*----------------------------------------*/
+
+/*Wrror 1 & 2 Wrapper*/
+.error-wrap, .error-wrap-2 {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    & .error-image {
+        margin-bottom: 20px;
+        & img {
+            max-width: 100%;
+        }
+    }
+    & .error-content {
+        text-align: center;
+        & .title {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        & h4 {
+            max-width: 770px;
+            margin: auto;
+            margin-bottom: 30px;
+        }
+        & .button {}
+    }
+    // Responsive
+    @media #{$laptop-device, $desktop-device} {
+        & .error-image {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    @media #{$large-mobile} {
+        & .error-content {
+            & .title {
+                font-size: 30px;
+            }
+            & h4 {
+                font-size: 16px;
+            }
+        }
+    }
+    @media #{$extra-small-mobile} {
+        & .error-content {
+            & .title {
+                font-size: 24px;
+            }
+            & h4 {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+/*Wrror 2 Wrapper*/
+.error-wrap-2 {
+    background-image: url(../images/error/error-2.png);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    & .error-content {
+        text-align: left;
+        & .display-1 {
+            display: block;
+            font-size: 300px;
+            line-height: 0.95;
+            font-weight: 800;
+            color: $white;
+            text-shadow: 20px 0 20px rgba($black, 0.1);
+        }
+    }
+    // Responsive
+    @media #{$desktop-device, $tablet-device} {
+        & .error-content {
+            & .display-1 {
+                font-size: 240px;
+            }
+        }
+    }
+    @media #{$large-mobile} {
+        & .error-content {
+            & .display-1 {
+                font-size: 200px;
+            }
+        }
+    }
+    @media #{$extra-small-mobile} {
+        & .error-content {
+            & .display-1 {
+                font-size: 130px;
+            }
+        }
+    }
+}

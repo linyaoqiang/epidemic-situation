@@ -1,0 +1,221 @@
+/*--
+    - Foo Table
+--------------------------------------*/
+.footable.table {
+    margin: 0;
+    & thead {
+        & tr {
+            & th {
+                padding: 0.75em;
+                border-color: #dee2e6;
+                line-height: inherit;
+                border-top: 1px solid #dee2e6 !important;
+                & .footable-filtering-search {
+                    & .input-group {
+                        & .form-control {
+                            @extend .form-control;
+                            max-width: 100%;
+                            padding: 7px 20px;
+                            box-shadow: none;
+                            border-top-right-radius: 0;
+                            border-bottom-right-radius: 0;
+                        }
+                        & .input-group-btn {
+                            & .btn {
+                                @extend .button;
+                                @extend .button-primary;
+                                margin: 0 !important;
+                                padding: 7px 15px !important;
+                                border-radius: 0 !important;
+                                & .caret {
+                                    display: none;
+                                }
+                                &::after {
+                                    margin: 0;
+                                }
+                                &.btn-primary {
+                                    @extend .button-primary;
+                                }
+                                &.dropdown-toggle {
+                                    border-top-right-radius: 4px !important;
+                                    border-bottom-right-radius: 4px !important;
+                                    border-left-color: darken($primary, 15);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.footable-filtering {
+                & th {
+                    border-top: none !important;
+                    padding: 0 0 20px;
+                }
+            }
+        }
+    }
+    & tbody {
+        & tr {
+            & td {
+                padding: 0.75em;
+                border-color: #dee2e6;
+                line-height: inherit;
+                & .footable-details {
+                    margin: 0;
+                    & tbody {
+                        & tr {
+                            & th {
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                }
+                &.footable-editing {
+                    & .btn-group {
+                        & .btn {
+                            @extend .button;
+                            @extend .button-xs;
+                            margin: 0 !important;
+                            padding: 0 6px !important;
+                            line-height: 20px !important;
+                            &:last-child {
+                                border-top-left-radius: 0;
+                                border-bottom-left-radius: 0;
+                            }
+                            &.footable-edit {
+                                @extend .button-primary;
+                            }
+                            &.footable-delete {
+                                @extend .button-danger;
+                            }
+                        }
+                    }
+                }
+            }
+            &.footable-detail-row {
+                & > td {
+                    padding: 0;
+                }
+            }
+        }
+    }
+    & tfoot {
+        & tr {
+            & td {
+                padding: 15px;
+            }
+            &.footable-editing {
+                & td {
+                    & .btn {
+                        @extend .button;
+                        &.btn-primary {
+                            @extend .button-primary;
+                        }
+                        &.footable-hide {
+                            @extend .button-info;
+                            @extend .button-outline;
+                        }
+                        &:not(.footable-show) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            &:last-child {
+                & td {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+    &.footable-editing-show {
+        & tfoot {
+            & tr {
+                & td {}
+                &.footable-editing {
+                    & td {
+                        & .btn {
+                            display: none;
+                            &:not(.footable-show) {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*Footable Pagination*/
+.footable-pagination-wrapper {
+    & .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: -10px;
+        margin-top: 0;
+        & li {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            &:last-child {
+                margin-right: 0;
+            }
+            & a {
+                display: inline-block;
+                background-color: transparent;
+                color: $body-color;
+                border-radius: 4px;
+                text-transform: capitalize;
+                font-size: 15px;
+                line-height: 24px;
+                padding: 4px 15px;
+                border-width: 1px;
+                border-style: solid;
+                &:hover {
+                    background-color: $primary;
+                    border-color: $primary;
+                    color: $white;
+                }
+            }
+            &.disabled {
+                & a {
+                    background-color: transparent;
+                }
+            }
+            &.footable-page-nav {
+                & a {
+                    padding-top: 2px;
+                    padding-bottom: 6px;
+                    font-size: 18px;
+                }
+            }
+            &:last-child {
+                & a, span {
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                }
+            }
+            &.active {
+                & a, & a:focus, & a:hover {
+                    background-color: $primary;
+                    border-color: $primary;
+                    color: $white;
+                }
+            }
+        }
+    }
+    & .label {
+        display: none;
+    }
+}
+
+/*Footable Editor*/
+#footable-editor {
+    & .form-group {
+        margin-bottom: 15px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

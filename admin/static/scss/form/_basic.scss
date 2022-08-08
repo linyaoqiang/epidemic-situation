@@ -1,0 +1,145 @@
+/*--
+    - Basic
+--------------------------------------*/
+/*Help Text*/
+.form-help-text {
+    display: block;
+    font-size: 13px;
+    display: block;
+    color: $body-light;
+    margin-top: 5px;
+}
+
+/*Form Group*/
+.form-group {
+    margin: 0;
+}
+
+/* provides a red astrix to denote required fields - this should be included in common stylesheet */
+.form-group.required .control-label:after {
+    content:"*";
+    color:red;
+    margin-left: 4px;
+}
+
+/*Label*/
+label {
+    display: block;
+    line-height: 1;
+    margin-bottom: 10px;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    &.inline {
+        margin: 0;
+        display: inline-block;
+        margin-right: 15px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+/*Form Coltrol*/
+.form-control {
+    width: 100%;
+    background-color: $white;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    font-family: $body-font;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 10px 20px;
+    color: $body-color;
+    height: auto;
+    &:focus {
+        box-shadow: none;
+        border-color: $primary;
+    }
+    &[readonly] {
+        background-color: transparent;
+        border-color: #dddddd;
+    }
+    &[disabled] {
+        background-color: transparent;
+        border-color: #efefef;
+        color: #cccccc;
+        @include placeholder {
+            color: #cccccc;
+        }
+    }
+    &.nice-select {
+        padding-right: 35px;
+    }
+    
+    // State & Focus State
+    &.dark, &.focus-dark:focus {
+        border-color: $heading-color;
+    }
+    &.primary, &.focus-primary:focus {
+        border-color: $primary;
+    }
+    &.secondary, &.focus-secondary:focus {
+        border-color: $secondary;
+    }
+    &.success, &.focus-success:focus {
+        border-color: $success;
+    }
+    &.danger, &.focus-danger:focus {
+        border-color: $danger;
+    }
+    &.warning, &.focus-warning:focus {
+        border-color: $warning;
+    }
+    &.info, &.focus-info:focus {
+        border-color: $info;
+    }
+    
+    // Size
+    &.form-control-sm {
+        padding: 5px 15px;
+        font-size: 12px;
+        &.nice-select {
+            padding-right: 35px;
+        }
+    }
+    &.form-control-lg {
+        padding: 15px 25px;
+        font-size: 16px;
+        &.nice-select {
+            padding-right: 35px;
+        }
+    }
+    
+}
+/*Textarea*/
+textarea.form-control {
+    height: 120px;
+}
+/*Select*/
+select.form-control:not([multiple]) {
+    background-image: url(../images/icons/select-arrow-down.png);
+    background-position: center right;
+    background-repeat: no-repeat;
+    appearance: none;
+    padding: 9px 16px;
+    padding-right: 35px;
+    
+    &.form-control-sm {
+        padding: 5px 11px;
+        font-size: 12px;
+        padding-right: 35px;
+    }
+    &.form-control-lg {
+        padding: 15px 21px;
+        font-size: 16px;
+        padding-right: 35px;
+    }
+}
+
+/*Input Type Checkbox & Radio*/
+input[type="checkbox"], input[type="radio"] {
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+}

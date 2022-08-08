@@ -1,0 +1,148 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>疫情防控管理系统-登录</title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="{% static 'css/vendor/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor/cryptocurrency-icons.css' %}">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins/plugins.css' %}">
+
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="{% static 'css/helper.css' %}">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Custom Style CSS Only For Demo Purpose -->
+    <link id="cus-style" rel="stylesheet" href="{% static 'css/style-primary.css' %}">
+
+    <style>
+        #side-header-menu ul li a {
+            font-size: 20px;
+        }
+
+        #side-header-menu ul li ul li a {
+            font-size: 18px;
+        }
+
+
+        .self-login-register-bg {
+            background-image: url('{% static 'images/bg/self-login-bg.png' %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            min-height: 100vh;
+            height: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="main-wrapper">
+
+    <!-- Content Body Start -->
+    <div class="content-body m-0 p-0">
+
+        <div class="login-register-wrap">
+            <div class="row">
+
+                <div class="d-flex align-self-center justify-content-center order-2 order-lg-1 col-lg-5 col-12">
+
+                    <div class="login-register-form-wrap">
+                        <div class="jumbotron">
+                            <span class="display-4" style="font-size: 40px;">疫情防控管理系统</span>
+                        </div>
+                        <div class="content">
+                            <h1>管理员登录</h1>
+                            <p style="color: red;">{{ login_error }}</p>
+                        </div>
+
+                        <div class="login-register-form">
+                            <form action="/admin/login?next={{ next_location }}" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-12 mb-20">
+                                        <input class="form-control" type="text" name="username" placeholder="用户名"
+                                               value="{{ username }}"></div>
+                                    <div class="col-12 mb-20">
+                                        <input class="form-control" type="password" name="password" placeholder="密码"
+                                               value="{{ password }}">
+                                    </div>
+
+                                    <div class="col-12 mt-10">
+                                        <button style="margin: 0 auto;width: 50%;"
+                                                class="button button-primary button-outline">登录
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="self-login-register-bg order-1 order-lg-2 col-lg-7 col-12">
+                    <div class="content">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- Content Body End -->
+
+</div>
+
+<!-- JS============================================ -->
+
+<!-- Global Vendor, plugins & Activation JS -->
+<script src="{% static 'js/vendor/modernizr-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/vendor/popper.min.js' %}"></script>
+<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+
+<!--Plugins JS-->
+<script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'js/plugins/tippy4.min.js.js' %}"></script>
+
+<!--Main JS-->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
